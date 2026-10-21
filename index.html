@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>InfiBee Coders — Live coding classes for kids</title>
+<style>
+:root{color-scheme:light;--bg:#fffbea;--surface:#fff;--ink:#1a1a1a;--muted:#5c5841;--brand:#1a1a1a;--accent:#a26b00;--accent2:#fcd34d;--btnink:#fff;--line:#efe3a8;--chip:#fbf0b8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media not all{:root:not([data-theme="light"]){--bg:#151208;--surface:#211d0e;--ink:#fff6cc;--muted:#cfc58a;--brand:#ecd463;--accent:#ecd463;--btnink:#1a1a1a;--line:#3d3716;--chip:#2e2a12}}
+:root[data-theme="none"]{--bg:#151208;--surface:#211d0e;--ink:#fff6cc;--muted:#cfc58a;--brand:#ecd463;--accent:#ecd463;--btnink:#1a1a1a;--line:#3d3716;--chip:#2e2a12}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+h1,h2,h3,.sans{font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:-.02em}
+a{color:inherit}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{background:#1a1a1a;color:var(--accent2);text-align:center;padding:8px;font:600 14px system-ui,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px;gap:12px;flex-wrap:wrap}
+.logo{font:800 20px "Trebuchet MS",sans-serif;text-decoration:none;color:var(--brand)}
+.logo{display:inline-flex;align-items:center;gap:10px}.logo span{color:var(--accent)}.logo img{height:56px;width:auto;display:block}
+nav{display:flex;gap:18px;font:600 15px system-ui,sans-serif}nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:var(--btnink);padding:13px 22px;border-radius:999px;text-decoration:none;font:700 15px system-ui,sans-serif;border:2px solid var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.hero{padding:56px 0 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;background:var(--accent2);box-shadow:0 0 0 100vmax var(--accent2);clip-path:inset(0 -100vmax)}
+.eyebrow{font:700 12px system-ui,sans-serif;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.02;margin:10px 0 16px;color:var(--brand)}h1 em{font-style:normal;text-decoration:underline;text-decoration-color:#fff;text-decoration-thickness:6px;text-underline-offset:7px}.eyebrow:before{content:"";display:inline-block;width:28px;height:3px;background:var(--accent2);border-radius:3px;vertical-align:middle;margin-right:10px}.hero .eyebrow:before{background:#1a1a1a}
+.hero p{font-size:18px;color:#1a1a1a;max-width:520px}.hero h1{color:#1a1a1a}.hero .eyebrow{color:#1a1a1a}.hero .btn{background:#1a1a1a;color:#fcd34d;border-color:#1a1a1a}.hero .btn.ghost{background:transparent;color:#1a1a1a}.hero .code{box-shadow:8px 8px 0 #fff}.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.code{background:#1a1a1a;color:#ffe9b0;border-radius:20px;padding:22px;font:14px/1.7 ui-monospace,Menlo,Consolas,monospace;box-shadow:8px 8px 0 var(--accent);overflow-x:auto}
+.code i{color:#ff9d85;font-style:normal}.code b{color:#9be3b0;font-weight:400}
+.dots{margin-bottom:10px;color:#ff6b4a;letter-spacing:4px}
+section{padding:56px 0}h2{font-size:clamp(28px,4vw,40px);margin:6px 0 10px;color:var(--brand);line-height:1.1}h2 em{color:var(--accent);font-style:normal}.end h2 em{color:#fcd34d}
+.sub{color:var(--muted);max-width:560px;margin:0 0 24px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.chip{border:1.5px solid var(--line);background:var(--chip);color:var(--ink);padding:8px 16px;border-radius:999px;font:600 14px system-ui,sans-serif;cursor:pointer}
+.chip.on{background:var(--accent2);color:#1a1a1a;border-color:#1a1a1a}
+#q{margin-left:auto;padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:15px system-ui,sans-serif;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.14);transition:.2s}
+.ic{width:58px;height:58px;border-radius:0;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);background:var(--accent2)!important;display:grid;place-items:center;font:800 22px "Trebuchet MS",sans-serif;color:#2a1f2d}
+.card h3{margin:4px 0 0;font-size:21px;color:var(--brand)}.card p{margin:0;color:var(--muted);font-size:15px;flex:1}
+.meta{display:flex;gap:8px;flex-wrap:wrap;font:600 12px system-ui,sans-serif}.meta span{background:var(--chip);padding:4px 10px;border-radius:999px}
+.card a{align-self:flex-start;background:#1a1a1a;color:#fcd34d;padding:9px 18px;border-radius:999px;font:600 14px Poppins,system-ui,sans-serif;text-decoration:none}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px}.step b{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--accent2);color:#1a1a1a;font:700 15px Poppins,system-ui,sans-serif}.step h3{margin:4px 0;color:var(--brand)}.step p{margin:0;color:var(--muted)}
+.band{background:var(--accent2) var(--hexbg);color:#1a1a1a;border-radius:28px;padding:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center}
+.band h2{color:#1a1a1a;margin:0}.band p{margin:0;opacity:.8;font:14px system-ui,sans-serif}
+details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font:700 17px "Trebuchet MS",sans-serif;color:var(--brand)}details p{color:var(--muted);margin:10px 0 0}
+.end{text-align:center;padding:64px 20px;background:#1a1a1a;color:#fff;border-radius:28px}.end h2{color:#fff}.end .eyebrow{color:#fcd34d}.end .btn{background:#fcd34d;color:#1a1a1a;border-color:#fcd34d}
+footer{background:#1a1a1a;color:#fcd34d;margin-top:40px;padding:28px 0;font:14px Poppins,system-ui,sans-serif;text-align:center}.strip{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;padding-top:26px;padding-bottom:6px;font-weight:600;font-size:14px}.strip span:before{content:"✓";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent2);color:#1a1a1a;margin-right:8px;font-size:12px}
+#none{display:none;color:var(--muted)}
+:root{--hexbg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='none' stroke='%23000' stroke-opacity='.12'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E")}
+.art{position:relative}.art .code,.art .bee,.art .hx{display:none}.scene{width:100%;height:auto;display:block;overflow:visible}.fl{animation:fl 3.5s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px)}}@media(prefers-reduced-motion:reduce){.fl{animation:none}}.bee{position:absolute;width:120px;right:-6px;top:-62px;z-index:2;animation:fly 3s ease-in-out infinite}.hx{position:absolute;z-index:2}
+@keyframes fly{50%{transform:translateY(-10px) rotate(4deg)}}@media(prefers-reduced-motion:reduce){.bee{animation:none}}
+.card{overflow:hidden}.ban{height:112px;margin:-22px -22px 6px;background:linear-gradient(135deg,var(--c),#fcd34d);display:grid;place-items:center;font-size:56px;position:relative;border-bottom:2px solid #1a1a1a}.ban::before{content:"";position:absolute;inset:0;background:var(--hexbg)}.ban span{position:relative;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.tile{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--accent2);border-radius:18px;padding:24px;box-shadow:0 8px 20px rgba(0,0,0,.06)}.tile span{display:none}.tile h3{margin:6px 0 2px;font-size:20px}.tile p{margin:0;font-size:15px}
+@media(max-width:780px){.bee{width:90px;top:-70px}.hero{grid-template-columns:1fr}#q{margin-left:0;width:100%}nav{display:none}}
+
+/* ---- Free resources ---- */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px}
+.res{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px}
+.res span.e{font-size:30px}.res b{font:700 17px Poppins,system-ui,sans-serif;color:var(--brand)}.res small{color:var(--muted);font:14px system-ui,sans-serif}
+.res[aria-pressed="true"]{border-color:#1a1a1a;background:var(--accent2);color:#1a1a1a}.res[aria-pressed="true"] b,.res[aria-pressed="true"] small{color:#1a1a1a}
+.gate{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:24px;max-width:640px}
+.gate label{display:block;font:600 14px system-ui,sans-serif;margin:0 0 6px}
+.gate input[type=email],.gate select{width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px}
+.gate .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:560px){.gate .row{grid-template-columns:1fr}}
+.gate .ok{display:flex;gap:8px;align-items:flex-start;font:13px system-ui,sans-serif;color:var(--muted);margin-bottom:16px}.gate .ok input{margin-top:3px}
+.gate button.btn{cursor:pointer}.gate button[disabled]{opacity:.6;cursor:wait}
+.hp{position:absolute;left:-9999px;height:0;width:0;opacity:0}
+#gmsg{margin:12px 0 0;font:600 14px system-ui,sans-serif}#gmsg.err{color:#b42318}
+#done{display:none;text-align:center}#done h3{margin:0 0 6px;font-size:22px}#done p{color:var(--muted);margin:0 0 16px}
+</style>
+</head>
+<body>
+<div class="top">New batches start every week. Try a free demo class ✨</div>
+<header><div class="wrap"><a class="logo" href="#" aria-label="InfiBee Coders"><img src="data:image/webp;base64,UklGRo4pAABXRUJQVlA4WAoAAAAQAAAA2wAA/AAAQUxQSAcPAAAB8EZt23Kn2bbtU5JM4opTSIJTLkoa3KEOozjUcQKhgru71FvcoX7jboVGgARCcQvu8YRkum0/TsnMnOdxnLf9iIgJIMWuM/nM7duXdgwMocQ/siYHEldXat62Tcvwiuh30wlhWZcqVwDHZEFAQrv2HTu0b9+ubctGUVyT+NxkKu5eAe0LIf60ag8AuBRCRM3yTCaz2WQyGcvy7+x8i2NaGAFXL89pfwXgvrLrWP4O6uYGcCqAiBLtkG2cxC+JpYCjp+cirwPYGUP6Jg0pcLXJfvcdIqLXLQDsFovZbAcA81ucVvkWgE9IPKBd99okYgWwqEuXjh26b7QB+EPLUYYovZQhA8AgCZmJgn4k1G8HcCNSVmBg+fxDA9hX74e1G2b40dtbz986u/VdLRHFrlr1EEDWus2btnajStPXr9nYTcaHIjQYwO0YiUrd16ZcvJi6srNGRuz4PeeuXTg8OZ5xXQH8G7bMCKF5tpaopQ0yJ1LYVQCTPbNfJ9byuB2ipi0xYvqxjyH+ZJSGQS1kdLQClxZA0vYuUaJZziQKyQAwVkYvEc02AINJtPMTyNwfJtAuc0PalsQ8pxuXf/vlOgDs0FHdPw7kAXh0YP++g30o+Gw5JjRv+XpC1x+scP8SKFLtCoD8NV9M2ecAME4w2AkgY/4X32QDeF6fdbDNjtZqah4F8KAaaXT6PQCW6vQ6vVbW6wJL8cuSYgvgWlSJROcAKHiTiPwWAzgfRlTlOoAd0UTU8AaAiSzrZAOwXUNE1N8FFDQiIu0RAAtIVJYFct0HBwUIIq4BWEjC6o8Ac1uiDwHkNyHhRAA7tGzqJehsA+w9SNjWChT9h4j0RwEs8pDDYjGbzBD+GUlErUxAaevgsNDQ4PDTAD4m+gHAsdCwsNDQwPddwMUQxhU1FUk0A4UCv2MAFntoXqv2bVu36b3BAmCdjmgAAMe1i5cuXfz3ghHAMPI/AqD44uXLly5mZQO4EcG4nHiR1wVNBccBLJI1TkYfEp/pBqxdiJJQ3iEUeg7lvMVJVgADJGLzAMwUs966df36tes3rl+9ca0ThQgKb9y+ceP69etXr2Rv8eedsR6Iug3gJ6J+AB42jI6OjoqOjgqPitKS/zEAa8MrRwvDw2MCiQ8SK8wCYKBE7RwAK4gSjYD9TRL3J+EqAKe0JKonFnuoRQWMk9FXYpQLwHCisEsA/tSJ9P2nn5aIPgJg6S1i2Lg1nj9OlGusjJGvxMfFxbWZVQigoBERzQDg+LlhSGCV4TmwrQ8liroE4PGgqkEhzbYCD/sxqqegi5yWlgpKEBQ/f/HixQsjhN8REVXNAoCc8+nZbgBHgojoIwcA173T5woAYDB7Wgre90hBE8FxAAtkfSVoLpB9oLKAEu9A5rUGRETaOQ7IXOHHICuAXiJuoFDCCZQ1IyL93wCWioVcBDBe0BKy7ddnhpN4kz9KxRx7GpGoZtBVieeT/Ii9VSfNnjE1XlBz2qyZyaEilSfPnjUuhog0/ebMnNVezH/onJkzXhPEjJs5Y8Z00aljusWQTF3rKb+kpu9b3MNA0tEfrDh0OmXTuMakCv0NGiqv1hBA/0deHxgULDsoKCg4OCgoKDg4OEQ8tOJDPBoqO0Q8NDQs3MCY13acSklNS00TpqampqakpKSlpqSkpKWlp58WnjmbkZGRkZmZIZmZmZmZIZopnnHWkxkZmZmZmecyRTMyzp49c/psxrnzlw7XZ4rhABi7Tc+SgQ7WmN9iSOR5MPdUEDsmg73ukcyIf8IgZFdnxUoweTEj2peyKa8ZEwL2gdG/+7HgQwerLN0ZEHMJzE4LVb45YPhXitcoh2X36yicbhOY/p3CdTOxrShR0QJPgPG7/ZRsmIt1jr4KVv0mmJ8VpVyLwYETFatZHg88rqdQ+t/AhWs1ytTTzgfGjooUdhaceDxQib4ALzoHKVDt+9yAa1WV5ztw5ALFaVnEE7lNFcZvL7jyF62yDHTwheVdRYm6AM5MC1aSKeDOEQoS/4Q/7tRUDM1qcOg3itHJxCNFiQoReBRcusNPGT518om1lyLEXAGnnotQgrng1okK0DSXX57U8zn9NnDsSo2vvWPimZJ2Phb0D7j2oL9vjQTfOvr7VI07nIOL0b60DNw71YcSCvnncV2f8f8LHLxS4yu9rDxU1tlHwjLAxUcr+cYE8LFrkE/EP+Ik3KjqCz+Bm+f5QMsSfsp91ev894Gjt+u8rb+Tp8xve1nkBXB1aoh3TQZfu0Z5Vf0nnIXsml6kWQPuXu5FnYz8VZToNUHHweG7/bxlsMvNYbZ+XlL5Krg8K9w7ZoPTv/KKJjm89ijeC7Tbwe0/ayrubQu/lXaosOAUcPwhQ0WNAs87P62gmre5DlerVMxycP6cCmlRzHu5TSvAbxe4f7vWcz2t/Gd+x2NhmVCBKYGe+gpq0D3cQ/EPVQGya3lEswoqcblH2r5UC0UtPBCwH6pxh1/5BjrVg71PuaIuQkWeCy/PNKhJ94RyNHqmKvC4riztRqjMVbLeMKqNsk4ygk5CdR4xSI1wqw/nIIla2VChN6uLLYcqXSiSUKhOCpoRkd9fUKnbdUQ9bWrF/A6FpkO1Hgsa41QvjuTtULHft85TL7mJ9I16WU4Ue0+t3KlJRKPVShIRUXCaOkkNElB3sxqx9CBR/W9q5De9GP0nR33kNSPpOepjHsmselltXK0shz52qAvHZyQ78Ki6OFxJHnUtUxNlHamcmnVqYpWmPFTvqXp4Ek/ln6EeJpMHq1xRC1mRnqCPnOrAMZA8ajikDvYEeIbav1QDJa3J0z+pgW/J4/Ue8d/92p6jifw3liowKov3MsMrgvo6+M7RiypUv4vv/tRVDLUs4rmCBKpgzbc8t4QqvPZ9frtVreIomdvcw8kLQ9J57VQlb6B3LHxmfJO80u93Ptuo9Q5qns9juU3IW5fw2Dzy2uq3+OtqjPfQUBdvOT8lLw46wVuHDN5Eb5j5qrQjebV2K1+t0ngXNcnhqaf1yNvn8tRk8voqV/kpK8L76FMnL9kHkA8GHuelfQG+QJ2NfPSyDfnmWj76jny03iMeuh/rKzSJg1yfk89GZfFPeqjvUF8H79jeJx/22887f+l8idoU801hAvm05nu+WUo+HnuPZ7Jf8TUayzGukeTzEWf45VSQ71F3K6+Y3iQF1P/JK5u0SkAJBXzyojEp4xI+mUUKWe0mj1yprBQ0ysUfjk9IMUNS+eNQgHLQW2beKO1ACqrbxhsrtUpCTXL44lFdUtY5fDGOFLbqFZ7IDFcaGuTmB1sfUtzA4/yw2195qEsZL5S0IgXWbOCFr0mR6z/hg3uvKBNN4wL3aFLo6H95IDVEqegDB/ssPUixDfvY94tOuah1CetympKCa35i3TxS9NgHbLtZTdloAtNcw0jhI86x7GSQ0lFfO7tMb5Hi++9g1wat8lFCIaueNSIWLmPVVGJizdtsuhzDBkp2s8jxETEyNIVFhwysoHcs7HnZkZip/409KzXsoGZ5rHlUj1i6kDXjiKnhn40ZJZmUlDQqSXKU/NGiyaKjRZOTk8eM+Vz+GPnJcsdIfi784uNgtvw/2AE9Bn32SU1u0lRv2++Tfu1q6b2l1lMAPTlJ9+72bDPgNj3YOyDQO2KfAe7efFRrixXS7r1x6iLuDOSfqeU1vXgo5DAAlB1dPG3RviIA2OKnIqYCQGY3PyLStEoBkFdfhr9BVz5DABHVfloefaWACtFVMrCq1n0AN+uReGw2MnoHiNUZsubQ3zvndw+RU23Y5hPHfu7tX+2JrOD3lu45dXTVsFix6C+nTEsOpK6LVs9uRkR+XebvPHli6/gEJn0GwD2SpAfMiSHRoEl3Ieo42VWq+2UInZtevS+n6z92iGYn6QQJZuBJjWlGAPOJ6vxmgmjRd9XYo9kA4FEtGdIhmyGz4BOxN/IhmV4MuHuKfFgAacd4kTLgVrIJAD6iqGOQuYo9wRkAjvl5YDYAGK+cvQcABa0EMf8CQPHlC3kQijXPAZD7+5JV2QAKE4moeRlgfQkA1gQaDaBs/8oNGXbkvMOe6ncBrKPyN80HcL5bRFD1LwoA7PMnohEAcLhVeOir291S+t8B3GhFRHVSAPwsAeQuHTB4fIjmL8A1noiCh/zbk9gb+wzAQg/MA5D7GgnHu4GylkT6fQCuVSciqnRY0IuImhUD9gEk7OkALoZK5L9JQt1BwPkeCSOJwXVzACwon//fALaTaK3HAMYS1XgAYAGJ9ndIDANwO1Kr0+m0jfKA3LoSq0h8E4Cs/nEGYnOdJwC+KV+VbABfiBlOAVhJ9FoJ4Own1jBfYjmAvL927tmze+dRK1DQROIDiV52AK5nx38aWI1FlW8B+E1TrthnAD4U0/4XgL+IWpcB1q5irzwB3L2JaAPKWfKqmK2jhP/Pbog6r4/yY4//SQBZITIMcYK45wA+ltgFYIdEt3JtAmDLeSZ8+vTpi8uxYsaWEhQw+qJNALimaJhDXwMobS3j/eerGmuoxgMAY8QC/gGwmah5CeDsLdYgT+IHAJkN4uJiY+Ni69SJr6WVaCFFFP7e4sP3XQDyX2XPWzYA66X0O4EXfSkwA8BGsZqPAMwgin0GYJZYD4fEWAD3Ikl+giBRjrDGV2UAhrIn8CQA8yitiOZLO4B+RN8BeFJX5CsAtq5EhhQA5yMF/jsg0ckCOJPEkrc09MSwiRoSHgQwiT30thmAbUunamHVOqy3AkgPJmpnBnCwoZ5C+uYAyAwlotkAsCVOq6m+3CnoQ0SBpwA8/yRCo4lOLsWDzzQSLSQGmxxLaxFR9YsAhjNIsxBC08Mbj00A8PJNItKtA4AXx3aftwJwDCQiin8CAI8P7b8DobsvEVF3CwD75b37rjkBbCSi5oKWYm1LAdzZvHDFBQAFTRhEAcvMkGtMImHVvyHTOV8roCQHJA/kAu5+Au0MG2SeryNhaiUWdx5yF2hYRPR+hlXCfq4HiUeveSlxb4SeRLXjikTsWxo/AtBfQJrB2S4x2846RESvWwCbBNXYWCJRsiiQGB31wZ67Rrft8YHR0SSt7fzXfaurNGtZPZLZZd9zp+362ICYI6f/OdJGhCh2VlaBy5l/PCmQhPUPn0o7GCdBuvab71rhfLrzHfJdAFZQOCBgGgAAEGMAnQEq3AD9AD5hLpNGpCKhoSVUy5iADAlmboWDpZ6VAyjGDhbNDO/j+x68R3z8qvaLr/9w/sv6l/Lb5N9uPWPmf+V/rv+5/w35BfNj/Peo/9P/9z3BP1R/539+/yvYZ8wv9P/vf/i/2/u4f5f90vd9/eP9z+xnwBfz//Hf/DsM/3h9g/9ufTV/ZP/w/KB+2f7n/Ap+wn/79gD1xf4Bwuv+L/E/9gPKj/B/ln2FHmr3I5iL033U/Tf3v2zdn/AC/KP5l/r98/AJ9Y/+f6Ov3fmz9kPYC/UT/h8hL6h7AX8z/xX/k9Tb/z/zfon+o/YO/mf9q/7nYZ/df2Jv2oZ7FYiFsf+x7mKinQy+os2bw3uR9taJHPbZ458Z2GbIVd197U/4u++NEXhAWsqdCqUY8EJtJa0ED4aic+JxJRcbByqEkL3gA97sSW38a+QSDQ+Xve6EtU3G16ZH/1xGlRZgGTKJONkzWyAmnkmDHjwQqmtj4kGRSy9Qlnok/tjUXwNqoirNnHCJMdhTz15Eo1RkGHez47jq0+AdQHR9lfQv98onLOryHHX78TmPj9XL2lz7vYALNEWZKek9YHi3auA0S08HBDS/3VJ9IWJ9DeBdThK4mY12l62q/Ns0IHKaEQOwgJ5VNKp4Q6jkxjzWTU2UQfZmitZQNyCCfFsP80coLCh/rn9BDcr/M6w260kGYLBzilgFT531og5BZk3n7vUC7LoT6E5r9dXQ9HI2NINmKTh88uG+IBUSwh+vaM+bFxwbx+D8mytNs/6YdIkafE51PCE3CZmHwpyPcnsOk0QXT7dRnbhxRG6bQFsQ/D/F+fqs3sW22dXs1kKUTcYIAdDs1n/kYiisKhVuOaU31oZSl1viBASWvec5xqqgTu1M/UPSaECaXpty0ndM+2o9NpWayqLm6uLOHNFswQ6swcL9nNQkawknogBvVz1QAxMBN2fNDX7YKaTe9RrrNjyoli6mYDT3FJlS8llf+2SglASJ76APuJrO/MVAjFyn1hURnumdhbZPhZaX1i6jMGaLeFlzq4LPTJ7k9xS39OpU+BC4n+4AAP7scwr61e7UBPACcs4mgpKs+t34mABHjz/yfpx7L4ia/449l8R1v5I2DToEjZUsxsVh/7JmQDf/1gOVVOhI9wIleX7Teqzw75Bmpeaau9+PB0hK2FF7cU1ZfHND7XqEeQ8qSGER6Cp77k7W+Owf/sXoteUoup8AZ93HkCZztFa7DXsEI25+DL0xHxFnX8bb4vfAzpE4pCQ0qVgqz9S9beN/+tZ4wu5qfX6LpBcLqbP/fy/zLcNyUbUtcVcE7KLLUz8IEInmXWXjO3pMZIPfgZPN9cdIUVGD/GdtLF0qOsipa0PuPT/yQe/Qr0iy32msA2AMV582/xiu3bIq8DKIhr3A+CT8LACKrQaI0C4JtW75IVifT5XX7NwpoJ1yl+kpmsFH66Ljb2XC8JbwKOO8h79VF1s0XJ2SxQRwYqSN0ejsxXSTOeWsTEQ86lMOf/ifKZZ1bMiZApnv0PY7TsAQvJvGd9xBqEIys2UV2dpq3E5sLtKweGxcES89NFXk2VfmK+JHx53OH75boHYnsxjAirmF3N7HJuN3iqH4cSrzz89jzlLq0YK0sexsgEwz0h+Wht8gIqoMrC3j8PTuZtB4j+r3H8li0Ht0Dzjy+19ckt7pcJA5NAmO/sZkgJ8ENlQmWcIXcg3Oq4PiWGh3uoGy3KlCYDRJfot8Nklv9Sdi+P70LPMMhFuDf9izmw7DoBmCoWUHUkSIWSN6bA9So8LQ87znZBPJd3avPy5mWFrnP5Xo/GU4JCnmZESVC3ASbidj5mUtbZBHB7lUyyLGU0EfqQYmZdBWA7a9dzST/3sPNn31Ag2kH6Y7kOeyf4C5sVoVh0kFbtdCdlk1+itk3G++wM5oDgKG1bCT1vRToAbP4dN44uR3uX5aPHYUPml6ipEop5ZnWmV3Xm/EIPWQgK39UKyUrCfo63mqmXvojfRHjZfxzgAACGMFhFMRGLu21q6g1H1Nfg4gzfBmqIDK+FFV7/N2d2ux3lNsQXLAmAMMB92XhvUDLFb5X7JOmEmtlr9K1m8LI10gLjt+4vouqeisCjH1RZYPK7UPONOEA/H9YKXDUfs5tol8TBKO12SpPyhHmg25SOa0VOE2y0Pnt8FDVYc8fME9/jXA2GqpavgQE/nH64vUN27tfXiho/61IpZIJb4mOcr8a4/830VUybP+BCJj41/kX1FWIqufifkUMK4GCI1xL3hfFxa0362lMqKgi2VqDzD3pRp1KkvfKJA0OmUWchQ/En3LE6fnpR12QYa/KCRbCyC2SfUZrckpqv6oAfCp7iw0ACJTcIf+kqStIhDBDh/9O8krbSj1hvfBJmuj2Kzg9BAhR8Pm7KcIhWRcCA4tpWpSxQD+EftTTfJLQ8NHDnT8Gs1PLEADLeSflJel2NDzqn989//+zXYHQDNOmUaRCb+TG9VEe4XOByB+n8tA700N5YGbKylhXxKAVRie9Mek5rOKYqp4D2IBXPeBDGeHK1eQ8ZK3B6W3ciU8umMgHkfO9AKLWpl4ojxMiyeXdyXpRIwTFRIUSb7sb1V67JoKtPg2sw6VSshH24gH+P3FsA1MCSiK88veib1zKrZJKw/jbjS61DM+/AHqAccuXi5dSSqNRgfGK5JOUdkhx3D1miT0N90fD6clO+L4xFk5ardWl1+0Dog/0cek9/bgkBezLMUI31FlY7Ii1zeFAhX3IYv/40RHp8u5isjx4ddd7xYIgw4uX8aI2MuPN4drfRxPCMLCDgdY+ypkWg+0PYPSfvSGbUeTlUCwQw3YdA8z6d+/6aq0VfNYYW9bkaeHPK7YGUavEij89MBhthd/EscfWBGLFayh9wVZmdBbkc02TcS13yHl5u/OL9W0E7U+wiDrqqsqmQhvH9ACoMDUlyREWLVrzRA1NjVU6FzkOFuPB6fhTomL/LxTT/P444FT+5q628lUkgpTv3yFqWbCnh7tqDXl7oeTY9JKTQSlbl3t0drJC6YntK/ZL8pKL3tI8CZjTK3hpAIs96RacGCN4iSPmkXy4wAkm1/nOgprwvhvgd39MthARWo9I1fUm7YAskEORDcKC04NZ02+8vMoJvOUpafmOpMUoYHOXHUf2+SWgGXWy7Ss99pphJP+uv1LYVfXBHl2Z2Ff8sToBeJnMP8AWYA0my8o0E5aBRpXBXQrWScBCTby69Ky58yV6ZKAaaOk4qlLZwH1qrtqOPQ6Yfp2lCRVoEyZepNKSRmDfXUNFMxorKiPNzGrGHNUkHbmY0ygSl5ngpI7KS1EwwWaSPQZvicXAmhbe4ofhLiTKErpVDOK6hEY36v8VfRBzkcqnYJD4Pmy2AjlHsBQnHbUuGHESYdq9XhdlA2eH3CDt0uTsXy2sGbnSNoY/TDmRpnnVZxVZ3P420wx7s1yJJ7kCqYOmABFpacaEwUuL/sLpXEKdDBee7BmQHMQ9SoqJl+Rnmsb+XgPxjfNK8IqiF8IaSmbiUO6PY+bxNZ7w2XTNWoEJGiuRFzEDeqkwmzl0a6aieoYNyMpaH3yhQB9dtQhC0mnf7BqgBVfrvXhGxzhXFW6Oo7mmJEmg2kmBDGoo9K1dNpVoH8WeOFPZwJjAwBGLvhL8z3JZlxReaAZbTf2+rootMsYFZ0JfeRK4ZRjRLgzSYQYAkfxfbMuTau6soiutNKrlnHDffzW+Uiw2FZZP0c7nA4sGoC3wkb59UB66pwr+CQE2WkiQtYAPpN+ahzx1KVOtb1nwU42A/dUQHvlj8X2ImtubrpNWRUDi0LaUvBoYPQjRP2EtjIaJfLSrRIxsG+i7Y3mp9FZVSeZlTgZRQ2iglAxlF8RKQYr1CxgCanBBZS+nZpmNnwfwBnbg5FqMUXz43NaDTVb7sqH+N8KlZjf8AeB1bNyRVjJrv85h391WPkH8lBjdZGpa2uRqi4Snpa5tSXFE7rElBHH3qflMq8wwRZwz5NdfvhBQbMCPzeX5Ty4V0Usd6CV0n+JuB06wx8aOB8Gz4/Nurdn14Mx7OhaRupNIZ6LzCRfv7qo+eRwIwEc6l7heThTk+qWYMsD+CnM7/XQT3ZkF6Yz9jBQahW8dq3f8dW0LXEWVhHle087DGd8sGrf1wifaYCwFJfd1C8nlpl/x4B4Dh0Hbedt5TmqnrEeVQB4Zm5xaqqLUCUQiMVGNWlp6LY6Z+x/J42sJ13cvaBpBMBwcb753KK6AKHCcAAoOjoXkZO4p1jsJAqlSKRu1jmYnXODhqXgEhP5NGk/6XrHzINTHtJ8eTIhj+MlDEtpjhqd62XJuZ5Hh/3gYToUEqZGf2eLf/8ifrfQ57UOCRbuqF4DURDBMxTkxFeecL3JxMjCtCUi0yVIu0dUpZQWfNEKblvKsZwx22qSO1FgqFQQ6joznDNW9KKnOmws2bLqW7cVRTd+Gqo8O8EOwEtKyF0mR+gFQIxziM/lFWws40flsTl6VQXm8GwNokCxysWraNHIZJQXqH+MwFhEt3wO1EF2zIuIQRfOZITM2MhGAevpiwWuUhGH0N7Llx+k2RNaj48FrIAyNF/vlounL0Zq47Dl8DKqP43YKQfoAArfoxneAQ21PMlsBtL9id0UkPcpzGIsdH0fB5cW/V3esf/86b/psqEk6sQbKMbx2raJ/ez+dOn2DFZDT10NEB5c6GWp/OkSn6JztyqXfrexFkKEOmF/4SaUP9j0uVz2S/quc//nnnWSqfyAWK48PSKeZlqPx0Q9DQhqLuFcsOPubImdpPRnt4N3h60GTBpOPOCiaFWSpS2LfvZsvRJWK62vk0q6IoHcU6z2SW4GhrEtnqOtfKCZuc0XV8d+OBma42RhvpMQAXPeDNJgcFhbzoPmU+R3InoY7ETZcybI9JYxPj8KzkpH0QYybPRVwBTgPsT05ePGnsj+Z4hx0uU1zYe5wzuiBF/Ldw8Hqv7ro5tz2vkNzfG8bOdoSpy2f/1yPwH1pGrwt3a/dQkf2FfpE2omSmHisZpPyy5K12DoDeQHdXY8WnOWnQkPB/g4FbeYQcBKXdjbctGETURYUXziCcKNYh97Le1PoJ61Z3vgVVispYua+GGt/ivSwpWO7MR1cFYSlOUuIyWHiUmInsFxFHeCadvrGeADL9hpkvnjQvhD6T9J/Ghh70peb45V770RXXzAV2Q/2bTjVfRRMJMmsVlItz2kPYb/s/vj3ic/xyNbjHwdcjhy+G503LRfwsrtUToPErI9t7qmAsRCQ1kZHOAcvld8xLq3ItEngEyqqutfsZmFUG6mMeWT9FATr8lS+Pi+Akar07wPTqI8IWlprwLGjf/9dYt9qCUWQtchhf3xtYA01xffDfFSnNKLg+Ih9WXWxWy8wt/H/WXkSJAtjlYY9R5NpDmjnp2TkzuEG3CI4lrrPVNEUv+3m8PSQdsg3KX2lcryNqJ/2esiFumVI3QnN6xXgzWcT9ELO9XzE7HNPAGeWcnsLadD5Mx397eso+C6i6Ko6pswLyNxg6o37hvK9NsO9YX0MFifE1XOcGvLnXm39BrG1XLEne5/sjf5rWbKl0Uj6YI7iVlBk5oPnjRoigB6+W+iAKtNUGWy3+rzv9M21sw8gecAEWE8eaVy4KcbFA4dVcPSF6Cxkulf9cnAju+TjY4bactrDKMvUwEaIO/eIVvpO6ghklciV+dAuSamKxYfIVI4JhZS/H40LlL6Tj0xMMLMsakjj1KoRLnzh5OEuRvMV0EzQH6aCvNn5R6HNilB7RWeuBOXzRXPzeAIYSurcxtn+Zrv5kd13GU+JXQaq/UqXwb7ic+P+FsV4EfB8mTwN4c/te/FS25Q+DW0lSQAvJGXedV6oak1agtmjU6BCzZ4FplkQ+wUbicFJ+tuRIMY/SJNfoD6TdAu5OCgFOLUcC3vmldSXBREKC14szMZIi3/jbzTYophkWcH4DjmTN1cIOMljy8mO2SrQzfIxZExOy56C9sP+PEw5OvlUujVhbmV9E2nKVxr+rvRhgRZTifNlfHIrZ1kiHB2tXjuboEbWuxbACdw45ZkmS2LgadhbKNj+zaYE96/wYiyk2sskM4AoXfgbKvcJnGlIaixA8I5Qcfkh+KLW/HBWdw1mNFvtV74xD+X+ZRanG0ayhFQpCsu0YMuDFLMAtTvLPz4qAr0sOSU1NJxqax3gIhGttquJUC/CXGBH7gba+ySBNyWgHdrqVTEQYALdQwqONRPcstZ86+pFY7go8bWx5VHgsEG//DJ2WqNAZ3DXUFa811X0tyOU6vBGdtt6XCLo3r/z0IgRvhoG6MEAD3yNLUnOHCrWD6A3rWnSbVBoQC43nkg6cr2ps7y9U4k999D7UmGphQYiyS/V13W6pJw3s8eIFYTrGBsKjFv/5OTz2qliLpCD7YB1OYn/r2mjraJTB86JvlVxH2Do1xWSaakHLSvLE1zhz1ML/j/LzG5rW3c4tJDskOIp16zjODjj1/eA0qHx2lSiPtR5XBWW085fyo6o5y0uVPRIoztSLBWrrNkV/+ASBszZFOpuJI7XDbMAMerREZqhp/x6zsnP2aZnwxc2/2v2DQ6Fij8rKRIlEfEI5LTn77yZVysjyqrpyxN5UZZn8m4hcFEsg4raFCnVM2rKbd/P/CJwbwgnTqfBivlxnxQ742BRwjjLfthMXwOVhPg5E8ec1FO4JYjHo2cI7jURy1XAu2xnC1AtpXs/7uz96Pb0ofDNMHXMQiedtGUzZMvgtH22NDtoXGPF1JoHkyroeHnjYiS62Ue2+E1w4IkLFO6RY1Lo22YdEouw2Tj6mN3WW7BzwHBD9TflQrU9KWTGfEVoYHZVSTK14WnKUXpmn+hkBqmyzHps04mDoLx1oBe4hcw0GDbOy/RuV9jby/cFVdH5uZj0EVHOhy/OPbYMNB7JyjI4IMgB9LfJPKhSlchFc/usxFa9C0Bj7juA8/n08G/rEQU/t3+CmbwuUPRb3XrQ+amBqH71DPR21KmPWq5t9eqFcJceuADF5HZ0Fm8WfrMxtbOfJAbl+qlawxJNhs2oCxe/ax/SOwcDZNknhalzvaITbDHGdUWjzdlWq5pkeuo2/L/P2DrsfHXo5h9DR6Qx5DZ0s3G8Xw+HrcocDQL+hCGW0f8BO79kMLHkJ0KKuRK3oESw4kueN9GXnLv0ueuuMLssEwx7j2SqOca6vcitM6R1OXxHySf9BuM1A/8JFHgxfUbJqo0BYtP8xk1ImPvAs42AZlpIAj/Nq0Ev3a6vj3pgBTov0UhKnXDAkR09Bcxrxk8EzalSPFoUCmqU47F8o9SlWoyuc+/rEd3XwZYvGYqzHStZVyPljf08BpEkfmCKGOZTeSKx7huv7IiQKb+zRmnni6dKol9R/V1L2rL1qstKgB585bRdNuG2vAijokRA0gNcf0MWZcWNnjAQuwa3uVdFzc3SuLqD+RiZUMICoSeUSnRrLXviowBrUy40O7XtXy4SA2ras2cDqxitEex2o9uM3gOaW4lY3zb2jiFZ4I2a05cdxf65NEeMso32FFygWk8w7hifjIzhY3GLowmfzA0QG0VsjL6ngRUhWJ49hyDgbVI7DkSOmbrgqVdFTXFcyl7m8ANaWjN69cQaq/m6kn5fFs79omT7H+103/g1Q7ABgRxeqV8yK2LvgzK/QDAJ1Snk4WQyvF+2V2H6in6N/OD//9Bt//oH7/8//VL11CvQHnaQZWxnvScfk9dCHSy9d24zo3jrRZQyQq5Kk6lnu9NieC5pfP8LaU4dR+CxfnJlzIi2Mq9L0aHEdf1q7Dr8P8typRMr3L7wp+SLG/L8+3tNcXEF6N5qzkwCmXgoGPvXTgUtGRqdU1Q2HZ9DqSNJZHF9AjHvSGxf/AQTEpGUTPpUoNiyI997dqWUdgEbxKDSw614+IOySSULYiZH/wRYDFsK+07Gl/ELgM9lkGmKZkL94K5LRyhIJAa2nM5rGNwufwkcJ3DDNGizs/+NQZ9RRnGeIBx/vLMRM1lnImTb41MlqcFxTYpE3ylMNC6Hh89RHndtKcSo4Y5kAeVsVAlNpF6/jm0Hfjbg/uvrBb2BL6/7UdVmmwOjwlW3Ok7ydI6vG10v3IhYeuJ1udC2BWdx69Hz1NSRx/gT1MYZjoRpKKQFH1lDg5EPrO5wa5dH9iwY9PxUq3O0wAGRTH081apzdzUsszK3dv0hMFEIianoVCDy+UNTeHxb9MPDXFeflGN1yWck52V6aCN1fqowCDaLiPjb/Wy3So0NW5bbmU31R8yxQc4OjO5veIuLnvq5qjdIJZ2AhL+y/lt4kmY4AAgXHo7F4QGo3XQv/6CT69eCkmC1vEy5sLpJBDqjzNT40TbRCx7unFGkl1jJkchk92NydYNhwTooacPYlsoONbVF2K18b9LaRJy+NeVpfNWy3RUE6xvOjx2GSQwza0HlbjbJ/VYaLhSx/TLaZ+2SmI4hAMtZ3wRktyblQHahWvJ8xPcBFOBN69gnepcz59SiJ17qXS8ZMPDZu3esyfzTn6VUIAAAO9l58cXHCbT/i+h1+AdkJPcAfLKvxoqoo3NCmD/pBLRJEIM9ERWvtrS27qevss+082p5Li+FqqhAAJd2i0AEJJ7n75Ye0Ktfk+dtgUt9ParYMH0DwRNDH8+haskH93vAShUb8hwu0kmCP+TThwjAF+dxJtCgR69DowOHFU3rwT3kEbLveIFLvMsjdV2ycOt0dqoVvfB9BlCW1jaA3Sy6jo46xr6LfsWL/3iJBiKALCRokbf8d8yB3aDE7DgjQEHF/Tqv4ziFY8+vpSjXPBDeVG/tTmXEq16mzs0o9Tf+0/y1/+c4Cuwr5cNR1xLkob93a+ABPCwZYAAAABZfaXotIVSIdorAgpMuViVS92kEkeDc9Zbm0uDBSnfBnq7wiOAbYnKq08FYrNwm9OO/C++yMc1t+e7Xyw//jE/8GrdHf6wskA+t+1dzjETe7CU/BnqXL590qVn1puZBmy+dmdhCeEMTsw+SqAAAAA=" alt="InfiBee Coders logo" width="220" height="253"></a>
+<nav><a href="#">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#resources">Free Resources</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#courses">Explore courses ↗</a></div></header>
+
+<main>
+<div class="wrap hero">
+<div><div class="eyebrow">Live online coding · Ages 6–18</div>
+<h1>Unlock your child’s potential with the power of <em>code!</em></h1>
+<p>Smart as a Bee, Limitless as Infinity! Fun, interactive live classes where little sparks become big builders.</p>
+<div class="cta"><a class="btn" href="#courses">Find their course ↗</a><a class="btn ghost" href="#how">How it works</a></div></div>
+<div class="art" aria-hidden="true"><svg class='scene' viewBox='0 0 400 340'><polygon points='100,30 300,30 385,170 300,310 100,310 15,170' fill='#fff' fill-opacity='.6' stroke='#1a1a1a' stroke-width='4' stroke-linejoin='round'/><text x='28' y='232' font-size='170' font-weight='300' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>{</text><text x='318' y='232' font-size='170' font-weight='300' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>}</text><path id='inf' d='M200 170C160 100 90 100 90 170C90 240 160 240 200 170C240 100 310 100 310 170C310 240 240 240 200 170Z' fill='none' stroke='#1a1a1a' stroke-width='5' stroke-dasharray='2 12' stroke-linecap='round'/><g><animateMotion dur='7s' repeatCount='indefinite'><mpath href='#inf'/></animateMotion><g transform='translate(-36 -42) scale(.6)'><ellipse cx='42' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(-25 42 34)'><animateTransform attributeName='transform' type='rotate' values='-25 42 34;-5 42 34;-25 42 34' dur='.4s' repeatCount='indefinite'/></ellipse><ellipse cx='78' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(25 78 34)'><animateTransform attributeName='transform' type='rotate' values='25 78 34;5 78 34;25 78 34' dur='.4s' repeatCount='indefinite'/></ellipse><path d='M52 26 46 10M68 26l6-16' stroke='#1a1a1a' stroke-width='3' stroke-linecap='round'/><ellipse cx='60' cy='70' rx='38' ry='36' fill='#fcd34d' stroke='#1a1a1a' stroke-width='3.5'/><path d='M24 78q36 10 72 0M33 95q27 8 54 0' stroke='#1a1a1a' stroke-width='9' fill='none'/><circle cx='48' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='72' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='40' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><circle cx='80' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><path d='M53 60q7 7 14 0' stroke='#1a1a1a' stroke-width='3' fill='none' stroke-linecap='round'/></g></g><g class='fl'><circle cx='62' cy='62' r='24' fill='#1a1a1a'/><text x='62' y='70' text-anchor='middle' font-size='20' font-weight='700' fill='#fcd34d' font-family='Poppins,system-ui,sans-serif'>AI</text></g><g class='fl' style='animation-delay:-1s'><rect x='290' y='38' width='72' height='34' rx='17' fill='#1a1a1a'/><text x='326' y='61' text-anchor='middle' font-size='18' font-weight='600' fill='#fcd34d' font-family='ui-monospace,Menlo,monospace'>&lt;/&gt;</text></g><g class='fl' style='animation-delay:-2s'><rect x='46' y='262' width='64' height='34' rx='17' fill='#1a1a1a'/><text x='78' y='285' text-anchor='middle' font-size='18' font-weight='600' fill='#fcd34d' font-family='ui-monospace,Menlo,monospace'>0101</text></g><g class='fl' style='animation-delay:-.5s'><rect x='282' y='262' width='84' height='34' rx='17' fill='#fff' stroke='#1a1a1a' stroke-width='3'/><text x='324' y='285' text-anchor='middle' font-size='16' font-weight='700' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>Python</text></g></svg><svg class="bee" viewBox="0 0 120 120"><ellipse cx="42" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(-25 42 34)"/><ellipse cx="78" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(25 78 34)"/><path d="M52 26 46 10M68 26l6-16" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="9" r="3.5" fill="#1a1a1a"/><circle cx="74" cy="9" r="3.5" fill="#1a1a1a"/><ellipse cx="60" cy="70" rx="38" ry="36" fill="#fcd34d" stroke="#1a1a1a" stroke-width="3.5"/><path d="M24 78q36 10 72 0M33 95q27 8 54 0" stroke="#1a1a1a" stroke-width="9" fill="none"/><circle cx="48" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="72" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="40" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><circle cx="80" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><path d="M53 60q7 7 14 0" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><svg class="hx" style="left:-28px;bottom:-26px;width:72px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/></svg><svg class="hx" style="right:18px;bottom:-34px;width:44px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#1a1a1a"/></svg><div class="code"><div class="dots">● ● ●</div>
+<i>def</i> <b>my_first_big_idea</b>():<br>&nbsp;&nbsp;imagine(<b>"anything"</b>)<br>&nbsp;&nbsp;build_it()<br>&nbsp;&nbsp;<i>while</i> curious:<br>&nbsp;&nbsp;&nbsp;&nbsp;keep_exploring() ✦</div></div>
+</div>
+
+<div class="strip wrap"><span>Live online classes</span><span>1:1 personal classes</span><span>Project-based learning</span><span>STEM curriculum</span><span>Ages 6–18</span></div>
+
+<section id="about"><div class="wrap"><div class="eyebrow">About InfiBee Coders</div><h2>Fun, structured and <em>STEM-powered.</em></h2><p class="sub" style="max-width:720px">At InfiBee Coders we help young minds pick up coding through playful, interactive and well-structured live classes. Our STEM approach mixes science, technology, engineering and maths to build creativity, problem-solving and critical thinking, so every student is ready to create in a tech-driven world.</p></div></section>
+
+<section id="courses"><div class="wrap">
+<div class="eyebrow">Follow their curiosity</div>
+<h2>Pick a path. <em>Start coding.</em></h2>
+<p class="sub">Thirteen ways in, from first blocks to AI agents and C++. Every class is live, small-group and taught by a real teacher.</p>
+<div class="tools" id="tools"></div>
+<div class="grid" id="grid"></div><p id="none">No courses match your search.</p>
+</div></section>
+
+<section><div class="wrap"><div class="eyebrow">Made by kids</div><h2>What will they <em>build?</em></h2><p class="sub">Every class ends with something they can proudly show off.</p><div class="tiles"><div class="tile"><span>🎮</span><h3>Games</h3><p>Platformers, quizzes and arcade classics.</p></div><div class="tile"><span>📱</span><h3>Mobile apps</h3><p>Real apps that run on a phone.</p></div><div class="tile"><span>🌐</span><h3>Websites</h3><p>Pages with colour, motion and ideas.</p></div><div class="tile"><span>🤖</span><h3>AI bots</h3><p>Smart helpers that learn and decide.</p></div></div></div></section>
+
+<section id="how"><div class="wrap">
+<div class="eyebrow">Small moments. Meaningful growth.</div>
+<h2>More than knowing. <em>The joy of making.</em></h2><p class="sub"></p>
+<div class="steps">
+<div class="step"><b>01</b><h3>Start with a spark</h3><p>A first animation, a game, an app. Choose what excites them most.</p></div>
+<div class="step"><b>02</b><h3>Learn with a real teacher</h3><p>Live 1:1 classes with projects built in every session.</p></div>
+<div class="step"><b>03</b><h3>Keep the curiosity going</h3><p>Share projects, join clubs and level up to the next language.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="band">
+<div><h2>13</h2><p>coding courses</p></div><div><h2>6–18</h2><p>age range</p></div><div><h2>1:1</h2><p>personal attention</p></div><div><h2>100%</h2><p>project based</p></div>
+</div></div></section>
+
+
+<section id="resources"><div class="wrap">
+<div class="eyebrow">Free for parents &amp; students</div>
+<h2>Grab a free <em>coding cheat sheet.</em></h2>
+<p class="sub">Pick a resource, enter your email, and download it instantly. We’ll also send you the occasional tip and class update. No spam, unsubscribe anytime.</p>
+<div class="res-grid" id="resGrid"></div>
+<div class="gate" id="gate">
+<form id="gform" novalidate>
+<div class="row">
+<div><label for="gname">Your name</label><input id="gname" name="name" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div>
+<div><label for="grole">I am a</label><select id="grole" name="role"><option>Parent</option><option>Student</option></select></div>
+</div>
+<label for="gemail">Email address</label>
+<input id="gemail" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+<input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="ok"><input type="checkbox" id="gok" required> <span>I agree to receive this resource and occasional updates from InfiBee Coders. (Students under 13: please ask a parent to enter their email.)</span></label>
+<button class="btn" type="submit" id="gbtn">Download free ↓</button>
+<p id="gmsg" role="status"></p>
+</form>
+<div id="done"><h3>🎉 You’re in!</h3><p id="doneTxt">Your download is ready.</p><a class="btn" id="dlink" href="#" download>Download again</a></div>
+</div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<div class="eyebrow">A few good questions</div><h2>Curious? <em>You’re in good company.</em></h2><p class="sub"></p>
+<details><summary>My child has never coded. Where should we start?</summary><p>Ages 6–9 usually begin with Scratch or Code.org. Ages 10 and up can jump into Thunkable or Python. Not sure? Book a free demo and we’ll recommend one.</p></details>
+<details><summary>Do we need to install anything?</summary><p>No. Scratch, Code.org and Thunkable run in the browser. Python and web dev use free tools we’ll help you set up in the first class.</p></details>
+<details><summary>Are the classes live?</summary><p>Yes. Every class is live online with a teacher, in 1:1 sessions so your child gets full attention.</p></details>
+<details><summary>How do we book?</summary><p>Choose a course above and tap “Enquire”. We’ll share current schedules, fees and the booking link.</p></details>
+</div></section>
+
+<section id="contact"><div class="wrap"><div class="end">
+<div class="eyebrow">The next “look what I made!” starts here</div>
+<h2>Let’s see what <em>sparks.</em></h2>
+<a class="btn" href="https://mail.google.com/mail/?view=cm&to=infibeecoders@gmail.com&su=Coding%20course%20enquiry&body=Hello%20InfiBee%20Coders%2C%0A%0AI%20would%20like%20to%20book%20a%20free%20demo%20for%201%3A1%20coding%20classes.%0A%0AChild%20name%3A%0AChild%20age%3A%0ACourse%20interested%20in%3A%0APreferred%20days%20and%20timings%3A%0AParent%20name%3A%0APhone%2FWhatsApp%20number%3A%0A%0AThank%20you." target="_blank" rel="noopener" style="margin-top:14px">Book a free demo ↗</a><p style="margin:20px 0 0;opacity:.85">Or email us at <a href="mailto:infibeecoders@gmail.com" style="color:#fcd34d">infibeecoders@gmail.com</a></p></div></div></section>
+</main>
+<footer><div class="wrap">© 2026 InfiBee Coders · Smart as a Bee, Limitless as Infinity!</div></footer>
+
+<script>
+var C=[
+{n:"Scratch Game Makers",t:"Scratch",c:"#ffc857",i:"S",a:"Ages 6–10",l:"Beginner",d:"Drag, drop and snap blocks together to make animations, stories and games while learning loops, events and logic."},
+{n:"Code.org Adventures",t:"Code.org",c:"#9be3b0",i:"C",a:"Ages 6–12",l:"Beginner",d:"Follow guided puzzles and unplugged challenges from Code.org, then remix them into your own creations."},
+{n:"Thunkable App Builders",t:"Thunkable",c:"#8fd3ff",i:"T",a:"Ages 10–15",l:"Beginner–Intermediate",d:"Design and build a real mobile app with drag-and-drop blocks, and test it on your own phone."},
+{n:"Python for Young Coders",t:"Python",c:"#ff9d85",i:"Py",a:"Ages 10–18",l:"Beginner–Advanced",d:"Write real code: variables, loops, functions and games. The most popular first text-based language."},
+{n:"Data Analysis with Python",t:"Data Analysis",c:"#ffb86b",i:"Da",a:"Ages 13–18",l:"Intermediate",d:"Use Python, pandas and charts to clean real data, spot patterns and tell stories with graphs and dashboards."},
+{n:"Machine Learning with Python",t:"Machine Learning",c:"#7ee0d0",i:"ML",a:"Ages 14–18",l:"Intermediate–Advanced",d:"Teach computers to learn from data. Train and test your own models in Python, from predicting prices to recognising images."},
+{n:"AI Agents with Python",t:"AI Agents",c:"#f5a3d6",i:"AI",a:"Ages 14–18",l:"Intermediate–Advanced",d:"Build smart Python agents that plan, use tools and complete tasks, like your own study helper or game-playing bot."},
+{n:"Database Management & SQL",t:"Databases",c:"#a8d8ff",i:"DB",a:"Ages 12–18",l:"Intermediate",d:"See how data is stored, organised and retrieved. Write basic SQL to insert, update and query data using SQLite, MySQL or cloud tools."},
+{n:"Edublocks: Blocks to Python",t:"Edublocks",c:"#ffd59e",i:"Eb",a:"Ages 9–13",l:"Beginner",d:"The perfect bridge from block coding to text coding. Write real Python with visual blocks and build quizzes, games and mini apps."},
+{n:"Desktop App Development",t:"Desktop Apps",c:"#b8e6a0",i:"Tk",a:"Ages 12–18",l:"Intermediate",d:"Create real desktop apps with Python’s Tkinter: windows, buttons and menus. Build calculators, to-do lists and handy mini tools."},
+{n:"C Programming",t:"C",c:"#f0b8b8",i:"C",a:"Ages 13–18",l:"Intermediate",d:"Learn the language behind operating systems and embedded devices: variables, data types, loops, functions and memory."},
+{n:"C++ Programming",t:"C++",c:"#c9c2ff",i:"C++",a:"Ages 14–18",l:"Intermediate–Advanced",d:"Step into object-oriented programming with classes, objects, inheritance and polymorphism. Build games, calculators and file managers."},
+{n:"Web Development Studio",t:"Web Dev",c:"#d4b5ff",i:"</>",a:"Ages 11–18",l:"Beginner–Intermediate",d:"Build and publish your own website with HTML, CSS and a splash of JavaScript."}
+];
+var E={"Scratch":"🐱","Code.org":"🧩","Thunkable":"📱","Python":"🐍","Data Analysis":"📊","Machine Learning":"🤖","AI Agents":"🧠","Databases":"🗄️","Edublocks":"🧱","Desktop Apps":"🖥️","C":"⚙️","C++":"🚀","Web Dev":"🌐"};
+var I={"Scratch":'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>',"Code.org":'<rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 12.5h4M9 10.5v4M16 11.5h.01M18 13.5h.01"/>',"Thunkable":'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',"Python":'<path d="M4 17l6-5-6-5M12 19h8"/>',"Data Analysis":'<path d="M3 3v18h18"/><path d="M8 17v-5M13 17V8M18 17v-9"/>',"Machine Learning":'<circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6l3.5 5M7 18l3.5-5M14 12h3"/>',"AI Agents":'<rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V5M9 14h.01M15 14h.01"/><circle cx="12" cy="4" r="1"/>',"Databases":'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',"Edublocks":'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',"Desktop Apps":'<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',"C":'<path d="M8 4c-2 0-3 1-3 3v3c0 1-1 2-2 2 1 0 2 1 2 2v3c0 2 1 3 3 3M16 4c2 0 3 1 3 3v3c0 1 1 2 2 2-1 0-2 1-2 2v3c0 2-1 3-3 3"/>',"C++":'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',"Web Dev":'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'};
+var cat="All",tools=document.getElementById("tools"),grid=document.getElementById("grid");
+var cats=["All"].concat(C.map(function(x){return x.t}));
+cats.forEach(function(k){var b=document.createElement("button");b.className="chip"+(k=="All"?" on":"");b.textContent=k;b.onclick=function(){cat=k;[].forEach.call(tools.querySelectorAll(".chip"),function(e){e.classList.toggle("on",e===b)});draw()};tools.appendChild(b)});
+var q=document.createElement("input");q.id="q";q.placeholder="Search courses ⌕";q.oninput=draw;tools.appendChild(q);
+function draw(){var s=q.value.toLowerCase(),n=0;grid.innerHTML="";
+C.forEach(function(x){if((cat!="All"&&x.t!=cat)||(s&&(x.n+x.d+x.t).toLowerCase().indexOf(s)<0))return;n++;
+var e=document.createElement("div");e.className="card";
+e.innerHTML='<div class="ban" style="--c:'+x.c+'"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">'+I[x.t]+'</svg></div><h3>'+x.n+'</h3><div class="meta"><span>'+x.a+'</span><span>'+x.l+'</span><span>1:1 live online</span></div><p>'+x.d+'</p><a target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&to=infibeecoders@gmail.com&su='+encodeURIComponent("Enquiry: "+x.n)+'&body='+encodeURIComponent("Hello InfiBee Coders,\n\nI would like to enquire about the 1:1 live class: "+x.n+".\n\nChild name:\nChild age:\nPreferred days and timings:\nParent name:\nPhone/WhatsApp number:\n\nPlease share the schedule, fees and details of a free demo class.\n\nThank you.")+'">Enquire ↗</a>';
+grid.appendChild(e)});
+document.getElementById("none").style.display=n?"none":"block"}
+draw();
+</script>
+
+<script>
+/* ============ SETTINGS: edit these ============ */
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzwQFK8DUNv6WOYTJJkh3gyhx-jbEGwwfStFKTa5Y8HbV6WX0aBdNVxrwqn7Cp5x1EL/exec";   // Google Sheets: paste your Apps Script "Web app" URL (ends in /exec). Formspree/Web3Forms URLs also work
+const ACCESS_KEY    = "";   // only for Web3Forms (leave "" for Formspree / Apps Script)
+const RESOURCES = [         // put your PDFs in a /downloads folder next to this page
+ {id:"scratch", emoji:"🧩", title:"Scratch Cheat Sheet", desc:"Blocks, loops and events on one page. Ages 6–10.", file:"downloads/scratch-cheatsheet.pdf"},
+ {id:"python",  emoji:"🐍", title:"Python Starter Cheat Sheet", desc:"Variables, loops, functions and common errors. Ages 10+.", file:"downloads/python-cheatsheet.pdf"},
+ {id:"parents", emoji:"👨‍👩‍👧", title:"Parent’s Guide to Coding", desc:"How to pick a first language and support your child at home.", file:"downloads/parents-guide.pdf"}
+];
+/* ============================================== */
+(function(){
+ var grid=document.getElementById("resGrid"),sel=RESOURCES[0];
+ RESOURCES.forEach(function(r,i){
+  var b=document.createElement("button");b.type="button";b.className="res";b.setAttribute("aria-pressed",i==0);
+  b.innerHTML='<span class="e">'+r.emoji+'</span><b>'+r.title+'</b><small>'+r.desc+'</small>';
+  b.onclick=function(){sel=r;[].forEach.call(grid.children,function(c){c.setAttribute("aria-pressed",c===b)})};
+  grid.appendChild(b);
+ });
+ var f=document.getElementById("gform"),msg=document.getElementById("gmsg"),btn=document.getElementById("gbtn");
+ function say(t,err){msg.textContent=t;msg.className=err?"err":""}
+ f.addEventListener("submit",function(e){
+  e.preventDefault();
+  var email=f.email.value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){say("Please enter a valid email address.",1);return}
+  if(!document.getElementById("gok").checked){say("Please tick the consent box.",1);return}
+  if(f.botcheck.value){return}
+  btn.disabled=true;say("Sending…");
+  var fd=new FormData(f);
+  fd.append("resource",sel.title);fd.append("subject","Resource download: "+sel.title);fd.append("source","InfiBee website");
+  if(ACCESS_KEY)fd.append("access_key",ACCESS_KEY);
+  var send;
+  if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: email was NOT saved (demo mode).");send=Promise.resolve()}
+  else if(FORM_ENDPOINT.indexOf("script.google.com")>-1){
+   /* Google Apps Script: simple form POST; response is opaque, so a resolved request means it was sent */
+   send=fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(fd)});
+  }else{
+   send=fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0});
+  }
+  send.then(function(){
+   f.style.display="none";var d=document.getElementById("done");d.style.display="block";
+   document.getElementById("doneTxt").textContent=sel.title+" is downloading now.";
+   var a=document.getElementById("dlink");a.href=sel.file;a.click();
+  }).catch(function(){say("Something went wrong. Please try again.",1);btn.disabled=false});
+ });
+})();
+</script>
+</body>
+</html>
