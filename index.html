@@ -76,22 +76,141 @@ footer{background:#1a1a1a;color:#fcd34d;margin-top:40px;padding:28px 0;font:14px
 .cal .calendly-inline-widget{min-width:320px;height:clamp(700px,calc(100vh - 128px),900px)}
 @media(max-width:780px){.cal .calendly-inline-widget{height:clamp(620px,calc(100svh - 112px),900px)}}
 .calnote{margin:14px 0 0;font:14px system-ui,sans-serif;color:var(--muted)}.calnote a{color:var(--accent);font-weight:600}
+
+/* ---- Cheat-sheet hub ---- */
+#resGrid{display:none}.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.tp{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:16px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}.tp:hover{border-color:#1a1a1a;transform:translateY(-3px);transition:.15s}.tp .e{font-size:26px}.tp b{font:700 15px Poppins,system-ui,sans-serif}.tp small{color:var(--muted);font:13px system-ui,sans-serif}.tp .dl{margin-top:8px;align-self:flex-start;background:#1a1a1a;color:#fcd34d;padding:6px 14px;border-radius:999px;font:600 13px system-ui,sans-serif}
+.hub{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;margin-bottom:24px;align-items:start}@media(max-width:780px){.hub{grid-template-columns:1fr}}
+.sh{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:4px 20px;margin-bottom:12px}.sh summary{padding:12px 0;font:700 16px Poppins,system-ui,sans-serif}
+.sh ul{margin:0 0 12px;padding-left:20px;color:var(--ink);font:15px/1.7 system-ui,sans-serif}.sh code,.qz code{background:var(--chip);padding:1px 6px;border-radius:6px;font:13px ui-monospace,Menlo,Consolas,monospace}.sh .btn{margin:0 0 16px;padding:8px 16px;font-size:14px;cursor:pointer}
+.qz{background:var(--accent2);color:#1a1a1a;border-radius:22px;padding:22px;position:sticky;top:96px}.qz h3{margin:6px 0 14px;font-size:18px;line-height:1.35}.qz .eyebrow{color:#1a1a1a}.qz .eyebrow:before{background:#1a1a1a}
+.opt{display:block;width:100%;text-align:left;margin:0 0 8px;padding:10px 14px;border-radius:12px;border:2px solid #1a1a1a;background:#fff;color:#1a1a1a;font:600 14px system-ui,sans-serif;cursor:pointer}.opt.ok{background:#9be3b0}.opt.no{background:#ffb4a8}
+.qz .btn{background:#1a1a1a;color:#fcd34d;border-color:#1a1a1a;cursor:pointer}#fb{font:600 14px/1.5 system-ui,sans-serif;margin:8px 0}
+
+/* ---- Course cards ---- */
+#grid{gap:24px}
+#grid .card{padding:0 22px 22px;border:2px solid #1a1a1a;border-radius:26px;box-shadow:6px 6px 0 #1a1a1a;transition:transform .2s,box-shadow .2s}
+#grid .card:hover{transform:translate(-3px,-5px);box-shadow:10px 11px 0 #1a1a1a}
+#grid .ban{height:150px;margin:0 -22px 8px;border-bottom:2px solid #1a1a1a}
+#grid .ban svg{width:84px;height:84px;padding:16px;background:#fff;border:2px solid #1a1a1a;border-radius:50%;box-shadow:4px 4px 0 #1a1a1a;stroke-width:1.6}
+#grid .ban .tag{position:absolute;top:12px;left:14px;font:700 12px system-ui,sans-serif;font-style:normal;background:#1a1a1a;color:#fcd34d;padding:4px 12px;border-radius:999px;letter-spacing:.03em}
+#grid .card h3{font-size:22px;margin-top:8px}
+#grid .meta span{background:#fff4c2;border:1.5px solid #1a1a1a;color:#1a1a1a}
+#grid .meta span:nth-child(2){background:#9be3b0}
+#grid .meta span:nth-child(3){background:#c9e7ff}
+#grid .card a{align-self:stretch;text-align:center;background:var(--accent);color:#fff;padding:12px 18px;border:2px solid #1a1a1a;border-radius:14px;font-weight:700}
+#grid .card a:hover{background:#1a1a1a;color:#fcd34d}
+
+/* ---- Professional polish ---- */
+:root{--shadow:0 1px 2px rgba(26,26,26,.06),0 10px 30px rgba(26,26,26,.08);--r:20px}
+body{font-size:16px;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid #1a1a1a;outline-offset:3px;border-radius:8px}
+.wrap{max-width:1140px;padding:0 24px}
+.top{background:#1a1a1a;font:600 13px Poppins,system-ui,sans-serif;letter-spacing:.02em;padding:9px 12px}
+header{background:rgba(255,251,234,.88);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid rgba(26,26,26,.08)}
+header .wrap{padding-top:10px;padding-bottom:10px}.logo img{height:46px}
+nav{gap:6px}nav a{padding:8px 14px;border-radius:999px;font:600 14.5px Poppins,system-ui,sans-serif;color:#1a1a1a;transition:background .15s}nav a:hover{background:var(--chip);color:#1a1a1a}
+.btn{font:600 15px Poppins,system-ui,sans-serif;padding:13px 26px;transition:transform .15s,box-shadow .15s,background .15s;box-shadow:0 4px 14px rgba(26,26,26,.15)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(26,26,26,.22)}
+.eyebrow{display:inline-block;background:rgba(26,26,26,.07);padding:6px 14px;border-radius:999px;font:600 12px Poppins,system-ui,sans-serif;letter-spacing:.1em}.eyebrow:before{display:none}
+.end .eyebrow,.qz .eyebrow{background:rgba(252,211,77,.18)}.qz .eyebrow{background:rgba(26,26,26,.1)}
+.hero{padding:76px 0 84px;gap:48px}
+h1{font-weight:800;letter-spacing:-.035em;line-height:1.04}
+.hero p{font-size:19px;line-height:1.65;max-width:500px;color:#2b2a22}
+.hero .btn.ghost{border-width:2px;box-shadow:none}
+.cta{margin-top:28px}
+.strip{padding-top:32px;padding-bottom:12px;gap:12px 32px}
+section{padding:84px 0}
+h2{font-weight:800;letter-spacing:-.03em;margin:14px 0 12px}
+.sub{font-size:17px;line-height:1.7;color:var(--muted);margin-bottom:32px}
+#about,#resources,#demo{background:var(--surface)}
+#courses,#how{background:var(--bg)}
+.tiles{gap:22px}
+.tile{border:1px solid var(--line);border-top:0;border-radius:var(--r);padding:28px 24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(26,26,26,.14)}
+.tile span{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:var(--accent2);font-size:28px;margin-bottom:12px}
+.steps{gap:22px}.step{border-radius:var(--r);padding:30px 26px;box-shadow:var(--shadow);position:relative}
+.step b{width:46px;height:46px;border-radius:14px;background:#1a1a1a;color:#fcd34d;margin-bottom:6px}
+.band{background:#1a1a1a;color:#fff;border-radius:28px;padding:48px 32px;box-shadow:var(--shadow)}
+.band h2{color:#fcd34d;font-size:clamp(34px,5vw,52px);margin:0 0 4px}.band p{color:#e9e3c4;opacity:1;font:500 14px Poppins,system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+#grid{gap:26px}
+#grid .card{border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:0 22px 24px}
+#grid .card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(26,26,26,.16)}
+#grid .ban{border-bottom:0;height:140px}
+#grid .ban svg{border:0;box-shadow:0 8px 20px rgba(26,26,26,.2)}
+#grid .meta span{border:0;font-weight:600}
+#grid .card a{border:0;border-radius:12px;background:#1a1a1a;color:#fcd34d;box-shadow:none}
+#grid .card a:hover{background:var(--accent);color:#fff}
+.chip{padding:9px 18px;font-family:Poppins,system-ui,sans-serif;font-weight:600;transition:background .15s,transform .15s}.chip:hover{transform:translateY(-1px);border-color:#1a1a1a}
+#q{padding:10px 18px}
+.tp{border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px}.tp:hover{box-shadow:0 16px 34px rgba(26,26,26,.14)}
+.qz{border-radius:var(--r);box-shadow:var(--shadow)}.opt{border-width:1.5px}
+.gate{border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);padding:30px;max-width:680px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px 22px;margin-bottom:12px;box-shadow:0 2px 8px rgba(26,26,26,.04)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;font:600 16.5px Poppins,system-ui,sans-serif}
+summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:24px;font-weight:400;color:var(--accent);transition:transform .2s}
+details[open] summary:after{transform:rotate(45deg)}details p{padding-bottom:14px;line-height:1.7}
+.cal{border-radius:var(--r);box-shadow:var(--shadow)}
+.end{background:linear-gradient(135deg,#1a1a1a,#2d2818);border-radius:32px;padding:72px 24px}
+footer{margin-top:0;padding:32px 0;font-size:14px;color:#e9d27a}
+@media(max-width:780px){section{padding:60px 0}.hero{padding:48px 0 56px}.wrap{padding:0 18px}}
+
+/* ---- Hero refinements ---- */
+.hero{position:relative;padding:84px 0 92px}
+.hero::before{content:"";position:absolute;inset:0 -100vmax;background:radial-gradient(circle at 76% 45%,rgba(255,255,255,.65),transparent 46%),radial-gradient(circle at 8% 0%,rgba(255,255,255,.35),transparent 40%),var(--hexbg);z-index:0;pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-weight:500;letter-spacing:-.03em;font-size:clamp(38px,5.6vw,62px);line-height:1.08}
+.hero h1 em{text-decoration-thickness:5px;text-decoration-color:rgba(255,255,255,.95)}
+.hero .eyebrow{font-weight:500;background:rgba(255,255,255,.6)}
+.hero p{font-weight:400}
+.hero .btn{font-weight:500;padding:14px 28px}
+.hero .btn.ghost{background:rgba(255,255,255,.5);border-color:#1a1a1a}
+.top{font-weight:500}nav a{font-weight:500}
+.hero .art{padding:8px}.scene{filter:drop-shadow(0 18px 30px rgba(26,26,26,.15))}
+
+/* ---- Bigger logo + richer course cards ---- */
+.logo img{height:72px}
+header .wrap{padding-top:6px;padding-bottom:6px}
+@media(max-width:780px){.logo img{height:58px}}
+#grid .card{overflow:hidden;transition:transform .25s,box-shadow .25s}
+#grid .ban{height:176px;background:linear-gradient(135deg,var(--c) 0%,#fff3b0 135%);overflow:hidden}
+#grid .ban::after{content:"";position:absolute;left:-40px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.35)}
+#grid .ban .wm{position:absolute;right:10px;bottom:-22px;font:800 104px/1 Poppins,system-ui,sans-serif;letter-spacing:-.06em;color:rgba(255,255,255,.5);z-index:0;pointer-events:none}
+#grid .ban svg{position:relative;z-index:1;width:92px;height:92px;padding:22px;border-radius:28px;background:#fff;box-shadow:0 12px 26px rgba(26,26,26,.22);transition:transform .3s}
+#grid .card:hover .ban svg{transform:scale(1.08) rotate(-5deg)}
+#grid .ban .tag{z-index:2;background:rgba(255,255,255,.9);color:#1a1a1a;box-shadow:0 2px 8px rgba(26,26,26,.12);font-weight:600}
+#grid .card h3{font-size:22px;margin:12px 0 2px}
+#grid .meta{margin:4px 0 6px}
+#grid .meta span{padding:5px 12px;font-size:12px}
+#grid .card p{line-height:1.65}
+#grid .card a{padding:13px 18px;margin-top:6px;font-weight:600;letter-spacing:.01em}
+
+/* ---- Quiz section ---- */
+#quiz{background:var(--bg)}
+.qb{max-width:720px;padding:34px}.qb .qh{margin:8px 0 10px;font-size:22px;line-height:1.35}.qb .qs{color:var(--muted);font:14px system-ui,sans-serif;margin:0 0 16px}
+.qb .score{font:800 56px Poppins,system-ui,sans-serif;margin:4px 0;color:var(--accent)}
+.qb .opt{background:#fff;font-size:15px;padding:13px 16px;margin-bottom:10px;border-radius:14px}.qb .opt:hover{background:var(--chip)}.qb .opt.ok{background:#9be3b0}.qb .opt.no{background:#ffb4a8}
+.qb #fb{font:500 15px/1.6 system-ui,sans-serif;margin:12px 0 0}
+.qb .btn{cursor:pointer}.qb button[disabled]{opacity:.6;cursor:wait}
+#qmsg{margin:12px 0 0;font:600 14px system-ui,sans-serif}#qmsg.err{color:#b42318}
+.pg{height:10px;background:var(--chip);border-radius:99px;margin:0 0 18px;overflow:hidden}.pg i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.tp.qzc{background:var(--accent2);border-color:#1a1a1a}.tp.qzc .dl{background:#1a1a1a}
+#sheets{margin-bottom:28px}
 </style>
 </head>
 <body>
-<div class="top">New batches start every week. Try a free demo class ✨</div>
+<div class="top">New batches start every week. Book your free demo class ✨</div>
 <header><div class="wrap"><a class="logo" href="#" aria-label="InfiBee Coders"><img src="data:image/webp;base64,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" alt="InfiBee Coders logo" width="220" height="253"></a>
-<nav><a href="#">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#resources">Free Resources</a><a href="#contact">Contact</a></nav>
+<nav><a href="#">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#resources">Free Resources</a><a href="#quiz">Quizzes</a><a href="#contact">Contact</a></nav>
 <a class="btn" href="#courses">Explore courses ↗</a></div></header>
 
 <main>
 <div class="wrap hero">
 <div><div class="eyebrow">Live online coding · Ages 6–18</div>
 <h1>Unlock your child’s potential with the power of <em>code!</em></h1>
-<p>Smart as a Bee, Limitless as Infinity! Fun, interactive live classes where little sparks become big builders.</p>
-<div class="cta"><a class="btn" href="#courses">Find their course ↗</a><a class="btn ghost" href="#how">How it works</a><a class="btn" href="#book">Book a free demo ↗</a></div></div>
-<div class="art" aria-hidden="true"><svg class='scene' viewBox='0 0 400 340'><polygon points='100,30 300,30 385,170 300,310 100,310 15,170' fill='#fff' fill-opacity='.6' stroke='#1a1a1a' stroke-width='4' stroke-linejoin='round'/><text x='28' y='232' font-size='170' font-weight='300' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>{</text><text x='318' y='232' font-size='170' font-weight='300' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>}</text><path id='inf' d='M200 170C160 100 90 100 90 170C90 240 160 240 200 170C240 100 310 100 310 170C310 240 240 240 200 170Z' fill='none' stroke='#1a1a1a' stroke-width='5' stroke-dasharray='2 12' stroke-linecap='round'/><g><animateMotion dur='7s' repeatCount='indefinite'><mpath href='#inf'/></animateMotion><g transform='translate(-36 -42) scale(.6)'><ellipse cx='42' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(-25 42 34)'><animateTransform attributeName='transform' type='rotate' values='-25 42 34;-5 42 34;-25 42 34' dur='.4s' repeatCount='indefinite'/></ellipse><ellipse cx='78' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(25 78 34)'><animateTransform attributeName='transform' type='rotate' values='25 78 34;5 78 34;25 78 34' dur='.4s' repeatCount='indefinite'/></ellipse><path d='M52 26 46 10M68 26l6-16' stroke='#1a1a1a' stroke-width='3' stroke-linecap='round'/><ellipse cx='60' cy='70' rx='38' ry='36' fill='#fcd34d' stroke='#1a1a1a' stroke-width='3.5'/><path d='M24 78q36 10 72 0M33 95q27 8 54 0' stroke='#1a1a1a' stroke-width='9' fill='none'/><circle cx='48' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='72' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='40' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><circle cx='80' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><path d='M53 60q7 7 14 0' stroke='#1a1a1a' stroke-width='3' fill='none' stroke-linecap='round'/></g></g><g class='fl'><circle cx='62' cy='62' r='24' fill='#1a1a1a'/><text x='62' y='70' text-anchor='middle' font-size='20' font-weight='700' fill='#fcd34d' font-family='Poppins,system-ui,sans-serif'>AI</text></g><g class='fl' style='animation-delay:-1s'><rect x='290' y='38' width='72' height='34' rx='17' fill='#1a1a1a'/><text x='326' y='61' text-anchor='middle' font-size='18' font-weight='600' fill='#fcd34d' font-family='ui-monospace,Menlo,monospace'>&lt;/&gt;</text></g><g class='fl' style='animation-delay:-2s'><rect x='46' y='262' width='64' height='34' rx='17' fill='#1a1a1a'/><text x='78' y='285' text-anchor='middle' font-size='18' font-weight='600' fill='#fcd34d' font-family='ui-monospace,Menlo,monospace'>0101</text></g><g class='fl' style='animation-delay:-.5s'><rect x='282' y='262' width='84' height='34' rx='17' fill='#fff' stroke='#1a1a1a' stroke-width='3'/><text x='324' y='285' text-anchor='middle' font-size='16' font-weight='700' fill='#1a1a1a' font-family='Poppins,system-ui,sans-serif'>Python</text></g></svg><svg class="bee" viewBox="0 0 120 120"><ellipse cx="42" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(-25 42 34)"/><ellipse cx="78" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(25 78 34)"/><path d="M52 26 46 10M68 26l6-16" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="9" r="3.5" fill="#1a1a1a"/><circle cx="74" cy="9" r="3.5" fill="#1a1a1a"/><ellipse cx="60" cy="70" rx="38" ry="36" fill="#fcd34d" stroke="#1a1a1a" stroke-width="3.5"/><path d="M24 78q36 10 72 0M33 95q27 8 54 0" stroke="#1a1a1a" stroke-width="9" fill="none"/><circle cx="48" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="72" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="40" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><circle cx="80" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><path d="M53 60q7 7 14 0" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><svg class="hx" style="left:-28px;bottom:-26px;width:72px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/></svg><svg class="hx" style="right:18px;bottom:-34px;width:44px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#1a1a1a"/></svg><div class="code"><div class="dots">● ● ●</div>
-<i>def</i> <b>my_first_big_idea</b>():<br>&nbsp;&nbsp;imagine(<b>"anything"</b>)<br>&nbsp;&nbsp;build_it()<br>&nbsp;&nbsp;<i>while</i> curious:<br>&nbsp;&nbsp;&nbsp;&nbsp;keep_exploring() ✦</div></div>
+<p>Smart as a Bee, Limitless as Infinity! Fun, live 1:1 coding classes where little sparks grow into big builders.</p>
+<div class="cta"><a class="btn" href="#courses">Find out courses ↗</a><a class="btn ghost" href="#how">How it works</a><a class="btn" href="#book">Book a free demo ↗</a></div></div>
+<div class="art" aria-hidden="true"><svg class='scene' viewBox='0 0 400 340'><circle cx='200' cy='170' r='158' fill='#fff' fill-opacity='.55'/><circle cx='200' cy='170' r='158' fill='none' stroke='#1a1a1a' stroke-opacity='.12' stroke-width='2'/><path id='inf' d='M200 170C160 100 90 100 90 170C90 240 160 240 200 170C240 100 310 100 310 170C310 240 240 240 200 170Z' fill='none' stroke='#1a1a1a' stroke-width='6' stroke-dasharray='1 13' stroke-linecap='round'/><g><animateMotion dur='7s' repeatCount='indefinite'><mpath href='#inf'/></animateMotion><g transform='translate(-54 -63) scale(.9)'><ellipse cx='42' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(-25 42 34)'><animateTransform attributeName='transform' type='rotate' values='-25 42 34;-5 42 34;-25 42 34' dur='.4s' repeatCount='indefinite'/></ellipse><ellipse cx='78' cy='34' rx='20' ry='12' fill='#fff' stroke='#1a1a1a' stroke-width='3' transform='rotate(25 78 34)'><animateTransform attributeName='transform' type='rotate' values='25 78 34;5 78 34;25 78 34' dur='.4s' repeatCount='indefinite'/></ellipse><path d='M52 26 46 10M68 26l6-16' stroke='#1a1a1a' stroke-width='3' stroke-linecap='round'/><ellipse cx='60' cy='70' rx='38' ry='36' fill='#fcd34d' stroke='#1a1a1a' stroke-width='3.5'/><path d='M24 78q36 10 72 0M33 95q27 8 54 0' stroke='#1a1a1a' stroke-width='9' fill='none'/><circle cx='48' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='72' cy='52' r='4.5' fill='#1a1a1a'/><circle cx='40' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><circle cx='80' cy='60' r='5' fill='#ff8a7a' opacity='.7'/><path d='M53 60q7 7 14 0' stroke='#1a1a1a' stroke-width='3' fill='none' stroke-linecap='round'/></g></g></svg><svg class="bee" viewBox="0 0 120 120"><ellipse cx="42" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(-25 42 34)"/><ellipse cx="78" cy="34" rx="20" ry="12" fill="#fff" stroke="#1a1a1a" stroke-width="3" transform="rotate(25 78 34)"/><path d="M52 26 46 10M68 26l6-16" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="9" r="3.5" fill="#1a1a1a"/><circle cx="74" cy="9" r="3.5" fill="#1a1a1a"/><ellipse cx="60" cy="70" rx="38" ry="36" fill="#fcd34d" stroke="#1a1a1a" stroke-width="3.5"/><path d="M24 78q36 10 72 0M33 95q27 8 54 0" stroke="#1a1a1a" stroke-width="9" fill="none"/><circle cx="48" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="72" cy="52" r="4.5" fill="#1a1a1a"/><circle cx="40" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><circle cx="80" cy="60" r="5" fill="#ff8a7a" opacity=".7"/><path d="M53 60q7 7 14 0" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/></svg><svg class="hx" style="left:-28px;bottom:-26px;width:72px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/></svg><svg class="hx" style="right:18px;bottom:-34px;width:44px" viewBox="0 0 40 40"><path d="M10 3h20l10 17-10 17H10L0 20z" fill="#1a1a1a"/></svg><div class="code"><div class="dots">● ● ●</div>
+<i>def</i> <b>big_idea</b>(topic):<br>&nbsp;&nbsp;plan = imagine(topic)<br>&nbsp;&nbsp;<i>while</i> curious:<br>&nbsp;&nbsp;&nbsp;&nbsp;build(plan)<br>&nbsp;&nbsp;<i>return</i> <b>"Look what I made!"</b> ✦</div></div>
 </div>
 
 <div class="strip wrap"><span>Live online classes</span><span>1:1 personal classes</span><span>Project-based learning</span><span>STEM curriculum</span><span>Ages 6–18</span></div>
@@ -124,8 +243,11 @@ footer{background:#1a1a1a;color:#fcd34d;margin-top:40px;padding:28px 0;font:14px
 
 <section id="resources"><div class="wrap">
 <div class="eyebrow">Free for parents &amp; students</div>
-<h2>Grab a free <em>coding cheat sheet.</em></h2>
-<p class="sub">Pick a resource, enter your email, and download it instantly. We’ll also send you the occasional tip and class update. No spam, unsubscribe anytime.</p>
+<h2>Free <em>cheat sheets.</em></h2>
+<p class="sub">Pick a platform, choose a topic and download its cheat sheet. Each platform also has a 5-question quiz to test what you learned. Enter your email to download. No spam, unsubscribe anytime.</p>
+<div class="tools" id="pf"></div>
+<div id="sheets"></div>
+<p id="gsel" style="font:600 16px Poppins,system-ui,sans-serif;margin:0 0 12px"></p>
 <div class="res-grid" id="resGrid"></div>
 <div class="gate" id="gate">
 <form id="gform" novalidate>
@@ -136,12 +258,20 @@ footer{background:#1a1a1a;color:#fcd34d;margin-top:40px;padding:28px 0;font:14px
 <label for="gemail">Email address</label>
 <input id="gemail" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
 <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
-<label class="ok"><input type="checkbox" id="gok" required> <span>I agree to receive this resource and occasional updates from InfiBee Coders. (Students under 13: please ask a parent to enter their email.)</span></label>
+<label class="ok"><input type="checkbox" id="gok" required> <span>No spam, unsubscribe any time.</span></label>
 <button class="btn" type="submit" id="gbtn">Download free ↓</button>
 <p id="gmsg" role="status"></p>
 </form>
 <div id="done"><h3>🎉 You’re in!</h3><p id="doneTxt">Your download is ready.</p><a class="btn" id="dlink" href="#" download>Download again</a></div>
 </div>
+</div></section>
+
+<section id="quiz"><div class="wrap">
+<div class="eyebrow">Practice quizzes</div>
+<h2>Test your skills. <em>Take a quiz.</em></h2>
+<p class="sub">Pick a platform, tell us who is playing, and answer 5 quick questions. You will see your score at the end.</p>
+<div class="tools" id="qpf"></div>
+<div class="gate qb" id="qbox"></div>
 </div></section>
 
 <section id="faq"><div class="wrap">
@@ -193,7 +323,7 @@ var q=document.createElement("input");q.id="q";q.placeholder="Search courses ⌕
 function draw(){var s=q.value.toLowerCase(),n=0;grid.innerHTML="";
 C.forEach(function(x){if((cat!="All"&&x.t!=cat)||(s&&(x.n+x.d+x.t).toLowerCase().indexOf(s)<0))return;n++;
 var e=document.createElement("div");e.className="card";
-e.innerHTML='<div class="ban" style="--c:'+x.c+'"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">'+I[x.t]+'</svg></div><h3>'+x.n+'</h3><div class="meta"><span>'+x.a+'</span><span>'+x.l+'</span><span>1:1 live online</span></div><p>'+x.d+'</p><a target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&to=infibeecoders@gmail.com&su='+encodeURIComponent("Enquiry: "+x.n)+'&body='+encodeURIComponent("Hello InfiBee Coders,\n\nI would like to enquire about the 1:1 live class: "+x.n+".\n\nChild name:\nChild age:\nPreferred days and timings:\nParent name:\nPhone/WhatsApp number:\n\nPlease share the schedule, fees and details of a free demo class.\n\nThank you.")+'">Enquire ↗</a>';
+e.innerHTML='<div class="ban" style="--c:'+x.c+'"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">'+I[x.t]+'</svg><em class="tag">'+x.t+'</em><b class="wm">'+x.i+'</b></div><h3>'+x.n+'</h3><div class="meta"><span>'+x.a+'</span><span>'+x.l+'</span><span>1:1 live online</span></div><p>'+x.d+'</p><a target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&to=infibeecoders@gmail.com&su='+encodeURIComponent("Enquiry: "+x.n)+'&body='+encodeURIComponent("Hello InfiBee Coders,\n\nI would like to enquire about the 1:1 live class: "+x.n+".\n\nChild name:\nChild age:\nPreferred days and timings:\nParent name:\nPhone/WhatsApp number:\n\nPlease share the schedule, fees and details of a free demo class.\n\nThank you.")+'">Enquire ↗</a>';
 grid.appendChild(e)});
 document.getElementById("none").style.display=n?"none":"block"}
 draw();
@@ -204,11 +334,25 @@ draw();
 const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzwQFK8DUNv6WOYTJJkh3gyhx-jbEGwwfStFKTa5Y8HbV6WX0aBdNVxrwqn7Cp5x1EL/exec";   // Google Sheets: paste your Apps Script "Web app" URL (ends in /exec). Formspree/Web3Forms URLs also work
 const ACCESS_KEY    = "";   // only for Web3Forms (leave "" for Formspree / Apps Script)
 const RESOURCES = [         // put your PDFs in the same folder as this page (index.html)
- {id:"scratch", emoji:"🧩", title:"Scratch Cheat Sheet", desc:"Blocks, loops and events on one page. Ages 6–10.", file:"scratch-cheatsheet.pdf"},
- {id:"python",  emoji:"🐍", title:"Python Starter Cheat Sheet", desc:"Variables, loops, functions and common errors. Ages 10+.", file:"python-cheatsheet.pdf"},
- {id:"parents", emoji:"🐍", title:"Loops in Python", desc:"Different types of loops, their syntax and real examples", file:"Python-loops-cheatsheet.pdf"},
- {id:"parents", emoji:"🎲", title:"Random in Python", desc:"Use of random module ,different functions in the random module with real examples", file:"random-module-in-python-cheatsheet.pdf"},
- {id:"parents", emoji:"📃", title:"Lists in Web Development", desc:"Different types of lists in HTML with real use cases and exampes", file:"lists-in-HTML-cheatsheet.pdf"}
+ {id:"scratch-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Move & control sprites",desc:"4 key points",file:"scratch-cheatsheet.pdf"},
+ {id:"scratch-variables-score-lives-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Variables, score & lives",desc:"4 key points",file:"scratch-variables-score-lives-cheatsheet.pdf"},
+ {id:"scratch-loops-events-broadcasts-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Loops, events & broadcasts",desc:"4 key points",file:"scratch-loops-events-broadcasts-cheatsheet.pdf"},
+ {id:"code-org-courses-by-age-parent-guide-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Courses by age (parent guide)",desc:"4 key points",file:"code-org-courses-by-age-parent-guide-cheatsheet.pdf"},
+ {id:"code-org-core-concepts-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Core concepts",desc:"4 key points",file:"code-org-core-concepts-cheatsheet.pdf"},
+ {id:"code-org-debugging-tips-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Debugging tips",desc:"4 key points",file:"code-org-debugging-tips-cheatsheet.pdf"},
+ {id:"thunkable-screens-components-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Screens & components",desc:"4 key points",file:"thunkable-screens-components-cheatsheet.pdf"},
+ {id:"thunkable-blocks-events-variables-logic-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Blocks: events, variables & logic",desc:"4 key points",file:"thunkable-blocks-events-variables-logic-cheatsheet.pdf"},
+ {id:"thunkable-test-share-your-app-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Test & share your app",desc:"4 key points",file:"thunkable-test-share-your-app-cheatsheet.pdf"},
+ {id:"python-cheatsheet-pdf",emoji:"🐍",title:"Python: Starter basics",desc:"4 key points",file:"python-cheatsheet.pdf"},
+ {id:"python-loops-cheatsheet-pdf",emoji:"🐍",title:"Python: Loops in Python",desc:"4 key points",file:"Python-loops-cheatsheet.pdf"},
+ {id:"random-module-in-python-cheatsheet-pdf",emoji:"🐍",title:"Python: Random module",desc:"4 key points",file:"random-module-in-python-cheatsheet.pdf"},
+ {id:"python-lists-functions-common-errors-cheatsheet-pdf",emoji:"🐍",title:"Python: Lists, functions & common errors",desc:"4 key points",file:"python-lists-functions-common-errors-cheatsheet.pdf"},
+ {id:"lists-in-html-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: Lists in HTML",desc:"4 key points",file:"lists-in-HTML-cheatsheet.pdf"},
+ {id:"web-dev-css-essentials-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: CSS essentials",desc:"4 key points",file:"web-dev-css-essentials-cheatsheet.pdf"},
+ {id:"web-dev-layout-javascript-starter-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: Layout & JavaScript starter",desc:"4 key points",file:"web-dev-layout-javascript-starter-cheatsheet.pdf"},
+ {id:"databases-read-data-select-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Read data: SELECT",desc:"4 key points",file:"databases-read-data-select-cheatsheet.pdf"},
+ {id:"databases-change-data-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Change data",desc:"4 key points",file:"databases-change-data-cheatsheet.pdf"},
+ {id:"databases-counting-joining-tables-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Counting & joining tables",desc:"4 key points",file:"databases-counting-joining-tables-cheatsheet.pdf"}
 ];
 /* ============================================== */
 (function(){
@@ -245,6 +389,143 @@ const RESOURCES = [         // put your PDFs in the same folder as this page (in
    var a=document.getElementById("dlink");a.href=sel.file;a.click();
   }).catch(function(){say("Something went wrong. Please try again.",1);btn.disabled=false});
  });
+})();
+</script>
+
+<script>
+var H=[
+{p:"Scratch",e:"🐱",s:[
+{t:"Move & control sprites",pdf:"scratch-cheatsheet.pdf",k:["`move 10 steps` and `turn 15 degrees` change position and direction","The stage is x: -240 to 240, y: -180 to 180; `go to x: y:` jumps there","`when [arrow] key pressed` + `change x by 10` = keyboard controls","`if on edge, bounce` keeps a sprite on screen"]},
+{t:"Variables, score & lives",k:["Make a variable under Variables, e.g. `score`","`set score to 0` when the green flag is clicked","`change score by 1` when you catch or hit something","Use `if lives = 0` then `stop all` for Game Over"]},
+{t:"Loops, events & broadcasts",k:["`forever` repeats always, `repeat 10` repeats a set number of times","`if / else` makes decisions, `touching [sprite]?` checks collisions","`broadcast [message]` tells other sprites to act","`create clone of myself` makes many copies for games"]}],
+q:[["Which block repeats actions again and again with no end?",["repeat 10","forever","wait 1 seconds"],1,"`forever` loops until the project stops."],["Which block starts a project when you press the flag?",["when green flag clicked","broadcast","go to x: y:"],0,"It is the standard start event."],["You want to count points. What do you need?",["A costume","A variable","A backdrop"],1,"A variable like `score` stores a number."],["How do sprites send messages to each other?",["broadcast","forever","say"],0,"Broadcast + `when I receive` links sprites."],["What does `change score by 1` do?",["Adds 1 to the score","Resets the score","Hides the score"],0,"It increases the variable by 1."]]},
+{p:"Code.org",e:"🧩",s:[
+{t:"Courses by age (parent guide)",k:["CS Fundamentals: grades K-5, puzzles and drag-and-drop blocks","CS Discoveries: grades 6-10, apps, games and web","CS Principles: high school, programming and big ideas","Hour of Code: a free 1-hour start for any age"]},
+{t:"Core concepts",k:["Sequence: steps run in order, top to bottom","Loop: repeat steps instead of copying blocks","Event: code that runs when something happens (click, key)","Conditional: `if` this is true, do that"]},
+{t:"Debugging tips",k:["Run the program slowly and watch each step","Check the order of blocks first","Look for a missing loop or a wrong number","Break a big puzzle into small parts"]}],
+q:[["What does a loop do?",["Stops the program","Repeats steps","Changes colour"],1,"Loops repeat so you write less code."],["Clicking a button starts an action. This is an...",["event","error","image"],0,"Events react to user actions."],["What is a bug?",["A mistake in code","A new level","A sprite"],0,"Debugging means finding and fixing it."],["Steps running one after another is called...",["Sequence","Condition","Function"],0,"Order matters in a sequence."],["Why do programmers use functions?",["To reuse code","To slow the program","To delete bugs"],0,"A function packages steps so you can reuse them."]]},
+{p:"Thunkable",e:"📱",s:[
+{t:"Screens & components",k:["Every app has screens; Screen1 is the first one","Drag components like Button, Label, TextBox and Image","Set properties (text, colour, size) in the right panel","Use `Navigator` blocks to move between screens"]},
+{t:"Blocks: events, variables & logic",k:["`when Button1.Click do` runs code on a tap","Create a global variable with `initialize app variable`","`if / else` blocks decide what happens","Join text with `join` to build messages"]},
+{t:"Test & share your app",k:["Use the Thunkable Live app to test on your own phone","Edit in the browser and the phone updates instantly","Share a project link or publish when it is ready","Always test on a real device before sharing"]}],
+q:[["Which block runs code when a button is tapped?",["when Button1.Click","initialize variable","join"],0,"Click is the tap event."],["Where do you change a Button's colour?",["Properties panel","Blocks tab","Phone settings"],0,"Properties control how it looks."],["What do you use to test the app on your phone?",["Thunkable Live","Scratch","Excel"],0,"It mirrors your project live."],["What stores a score in an app?",["Variable","Screen","Label colour"],0,"Variables hold values."],["What is a screen in an app?",["One page the user sees","A type of variable","A phone setting"],0,"Apps are made of one or more screens."]]},
+{p:"Python",e:"🐍",s:[
+{t:"Starter basics",pdf:"python-cheatsheet.pdf",k:["`print(\"Hello\")` shows text; `input()` asks the user","Types: `int` 5, `float` 2.5, `str` \"hi\", `bool` True","`name = \"Mia\"` stores a value in a variable","Comments start with `#`; indentation matters"]},
+{t:"Loops in Python",pdf:"Python-loops-cheatsheet.pdf",k:["`if x > 5:` ... `elif` ... `else:` with indented blocks","`for i in range(5):` repeats 5 times (0 to 4)","`while condition:` repeats until it is False","`break` exits a loop, `continue` skips to the next turn"]},
+{t:"Random module",pdf:"random-module-in-python-cheatsheet.pdf",k:["`import random` first","`random.randint(1, 6)` is a dice roll","`random.choice(list)` picks one item","`random.shuffle(list)` mixes a list in place"]},
+{t:"Lists, functions & common errors",k:["`fruits = [\"apple\", \"kiwi\"]`, `fruits.append(\"fig\")`, `len(fruits)`","`def greet(name): return \"Hi \" + name`","SyntaxError: missing `:` or bracket; IndentationError: spacing wrong","NameError: variable not defined; TypeError: mixing types like `\"5\" + 2`"]}],
+q:[["What does `print(2 + 3)` show?",["5","23","2 + 3"],0,"Python adds the numbers first."],["Which loop runs exactly 4 times?",["for i in range(4):","while True:","if i == 4:"],0,"`range(4)` gives 4 values."],["How do you pick a random item from a list?",["random.choice()","random.add()","print.random()"],0,"`choice` returns one item."],["Which error means spacing is wrong?",["IndentationError","NameError","TypeError"],0,"Python uses indentation for blocks."],["Which function tells you how many items are in a list?",["len()","count()","size()"],0,"`len(list)` returns the number of items."]]},
+{p:"Web Dev",e:"🌐",s:[
+{t:"Lists in HTML",pdf:"lists-in-HTML-cheatsheet.pdf",k:["`<h1>` to `<h6>` headings, `<p>` paragraph","`<a href=\"url\">link</a>` and `<img src=\"pic.jpg\" alt=\"text\">`","Lists: `<ul>` bullets, `<ol>` numbers, each item in `<li>`","Every page: `<html>`, `<head>`, `<body>`"]},
+{t:"CSS essentials",k:["`p { color: blue; }` selector + property: value","Select by class `.card` or id `#top`","Box model: content, padding, border, margin","`font-size`, `background-color`, `border-radius` for style"]},
+{t:"Layout & JavaScript starter",k:["`display: flex;` lines items up in a row","`justify-content` and `align-items` position them","JS: `let score = 0;` and `console.log(score)`","`button.onclick = function(){ ... }` runs code on click"]}],
+q:[["Which tag makes the biggest heading?",["<h1>","<p>","<h6>"],0,"`h1` is the top heading."],["Which CSS property changes text colour?",["color","font-weight","margin"],0,"`color` sets text colour."],["Which tag makes a bullet list?",["<ul>","<ol>","<li>"],0,"`ul` = unordered list."],["What does `display: flex` do?",["Aligns items in a row","Adds a border","Makes text bold"],0,"Flexbox arranges children."],["Which tag creates a link?",["<a>","<link>","<href>"],0,"`<a href=...>` makes a link."]]},
+{p:"Databases",e:"🗄️",s:[
+{t:"Read data: SELECT",k:["`SELECT * FROM students;` gets every column","`SELECT name, age FROM students;` picks columns","`WHERE age > 12` filters rows","`ORDER BY age DESC` sorts; `LIMIT 5` limits"]},
+{t:"Change data",k:["`INSERT INTO students (name, age) VALUES ('Mia', 12);`","`UPDATE students SET age = 13 WHERE name = 'Mia';`","`DELETE FROM students WHERE id = 3;`","Always use `WHERE` or you change every row"]},
+{t:"Counting & joining tables",k:["`COUNT(*)`, `SUM()`, `AVG()`, `MAX()`, `MIN()`","`GROUP BY class` summarises each group","Primary key = unique id for each row","`JOIN` links tables using a shared key"]}],
+q:[["Which command reads data?",["SELECT","INSERT","DELETE"],0,"SELECT retrieves rows."],["Which clause filters rows?",["WHERE","ORDER BY","LIMIT"],0,"WHERE keeps matching rows."],["What happens if UPDATE has no WHERE?",["Every row changes","Nothing","One row changes"],0,"Always add a WHERE."],["Which function counts rows?",["COUNT(*)","SUM()","MAX()"],0,"COUNT returns the number of rows."],["What is a primary key?",["A unique id for each row","The first column name","A password"],0,"It uniquely identifies each row."]]}
+];
+window.pickRes=function(file){var i=RESOURCES.map(function(r){return r.file}).indexOf(file),g=document.getElementById("resGrid");if(i>-1){g.children[i].click();document.getElementById("gsel").textContent="Selected: "+RESOURCES[i].title+" (enter your email below to download)"}document.getElementById("gate").scrollIntoView({behavior:"smooth",block:"center"})};
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/`([^`]+)`/g,"<code>$1</code>")}
+(function(){var pf=document.getElementById("pf"),sh=document.getElementById("sheets");
+H.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=h.e+" "+h.p;b.onclick=function(){show(i)};pf.appendChild(b)});
+function show(i){[].forEach.call(pf.children,function(c,j){c.classList.toggle("on",j==i)});
+sh.innerHTML='<div class="tg">'+H[i].s.map(function(x){var fn=x.pdf||(H[i].p+"-"+x.t).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")+"-cheatsheet.pdf";return '<button type="button" class="tp" onclick="pickRes(\''+fn+'\')"><span class="e">'+H[i].e+'</span><b>'+esc(x.t)+'</b><small>'+x.k.length+' key points · PDF</small><span class="dl">Download ↓</span></button>'}).join('')+'<button type="button" class="tp qzc" onclick="openQuiz('+i+')"><span class="e">🧠</span><b>'+H[i].p+' Quiz</b><small>'+H[i].q.length+' questions · test yourself</small><span class="dl">Take the quiz →</span></button></div>'}
+show(0)})();
+
+/* ---- Quizzes (separate section) ---- */
+(function(){var pf=document.getElementById("qpf"),box=document.getElementById("qbox"),P=0,Q=0,S=0,U=null,O=[];
+H.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=h.e+" "+h.p+" Quiz";b.onclick=function(){go(i)};pf.appendChild(b)});
+function go(i){P=i;Q=0;S=0;[].forEach.call(pf.children,function(c,j){c.classList.toggle("on",j==i)});gate()}
+window.openQuiz=function(i){go(i);document.getElementById("quiz").scrollIntoView({behavior:"smooth"})};
+function post(o){o.source="InfiBee website";if(typeof ACCESS_KEY!=="undefined"&&ACCESS_KEY)o.access_key=ACCESS_KEY;
+if(typeof FORM_ENDPOINT==="undefined"||!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: quiz details were NOT saved.");return Promise.resolve()}
+if(FORM_ENDPOINT.indexOf("script.google.com")>-1)return fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(o)});
+var fd=new FormData();for(var k in o)fd.append(k,o[k]);return fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0})}
+function gate(){var h=H[P],n=h.q.length,t='<h3 class="qh">'+h.e+" "+h.p+' Quiz</h3><p class="qs">'+n+' questions · about 2 minutes</p>';
+if(U){box.innerHTML=t+'<p>Hi <b>'+esc(U.name)+'</b>! Ready when you are.</p><button class="btn" type="button" id="qgo">Start quiz →</button>';document.getElementById("qgo").onclick=start;return}
+box.innerHTML=t+'<div class="row"><div><label for="qn">Your name</label><input id="qn" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div><div><label for="qr">I am a</label><select id="qr"><option selected>Child</option><option>Parent</option></select></div></div><label for="qe">Email address</label><input id="qe" type="email" autocomplete="email" placeholder="you@example.com"><input class="hp" id="qhp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="qs">No spam, unsubscribe any time.</p><button class="btn" type="button" id="qgo">Start quiz →</button><p id="qmsg" role="status"></p>';
+document.getElementById("qgo").onclick=start}
+function say(t,e){var m=document.getElementById("qmsg");if(m){m.textContent=t;m.className=e?"err":""}}
+function start(){var h=H[P];
+if(!U){var n=document.getElementById("qn").value.trim(),e=document.getElementById("qe").value.trim(),r=document.getElementById("qr").value;
+if(!n){say("Please enter your name.",1);return}
+if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){say("Please enter a valid email address.",1);return}
+if(document.getElementById("qhp").value)return;
+var bt=document.getElementById("qgo");bt.disabled=true;say("Starting…");
+post({name:n,email:e,role:r,resource:"Quiz: "+h.p+" Quiz",subject:"Quiz started: "+h.p+" Quiz"}).then(function(){U={name:n,email:e,role:r};Q=0;S=0;ques()}).catch(function(){say("Something went wrong. Please try again.",1);bt.disabled=false});return}
+Q=0;S=0;ques()}
+function ques(){var h=H[P],n=h.q.length;
+if(Q>=n){box.innerHTML='<h3 class="qh">'+(S==n?"🎉 Perfect score, ":S>=n-2?"👏 Well done, ":"🐝 Good try, ")+esc(U.name)+'!</h3><p class="score">'+S+' / '+n+'</p><p>'+(S==n?"You nailed the "+h.p+" quiz.":"Review the "+h.p+" cheat sheets and try again to beat your score.")+'</p><div class="cta"><button class="btn" type="button" id="qre">Retake quiz</button><a class="btn ghost" href="#resources" style="color:#1a1a1a;border-color:#1a1a1a">Get cheat sheets ↗</a></div><p class="qs">Try another quiz: pick a platform above.</p>';
+document.getElementById("qre").onclick=function(){Q=0;S=0;ques()};
+post({name:U.name,email:U.email,role:U.role,resource:"Quiz result: "+h.p+" Quiz",score:S+"/"+n,subject:"Quiz result: "+h.p+" Quiz "+S+"/"+n}).catch(function(){});return}
+var x=h.q[Q],done=0;O=x[1].map(function(_,j){return j});for(var k=O.length-1;k>0;k--){var r=Math.floor(Math.random()*(k+1)),t=O[k];O[k]=O[r];O[r]=t}
+box.innerHTML='<div class="pg"><i style="width:'+(Q/n*100)+'%"></i></div><div class="eyebrow">'+h.p+' Quiz · Question '+(Q+1)+' of '+n+'</div><h3 class="qh">'+esc(x[0])+'</h3>'+O.map(function(j){return '<button type="button" class="opt">'+esc(x[1][j])+'</button>'}).join('')+'<p id="fb"></p>';
+var ob=box.querySelectorAll(".opt");[].forEach.call(ob,function(b,k){b.onclick=function(){if(done)return;done=1;var ok=O[k]==x[2];if(ok)S++;b.classList.add(ok?"ok":"no");ob[O.indexOf(x[2])].classList.add("ok");
+document.getElementById("fb").innerHTML=(ok?"✅ Correct! ":"❌ Not quite. ")+esc(x[3])+'<br><button type="button" class="btn" id="nx" style="margin-top:12px;padding:10px 20px">'+(Q+1<n?"Next ›":"See my score")+'</button>';document.getElementById("nx").onclick=function(){Q++;ques()}}})}
+go(0)})();
+</script>
+<style>
+#bb{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:200;font-family:Poppins,system-ui,sans-serif}
+#bbt{width:62px;height:62px;border-radius:50%;border:2px solid #1a1a1a;background:#fcd34d;font-size:30px;cursor:pointer;box-shadow:0 10px 26px rgba(26,26,26,.3);transition:transform .2s}#bbt:hover{transform:scale(1.07)}
+#bbp{display:none;position:absolute;right:0;bottom:76px;width:352px;max-width:calc(100vw - 36px);height:520px;max-height:calc(100svh - 130px);background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:0 24px 60px rgba(26,26,26,.28);overflow:hidden;flex-direction:column}
+#bb.open #bbp{display:flex}
+#bbh{background:#1a1a1a;color:#fcd34d;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:500}#bbh small{display:block;color:#e9e3c4;font-size:12px;font-weight:400}
+#bbx{background:none;border:0;color:#fcd34d;font-size:24px;cursor:pointer;line-height:1}
+#bbm{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.bm{max-width:86%;padding:10px 14px;border-radius:16px;font:14.5px/1.55 system-ui,sans-serif;word-wrap:break-word}.bm a{color:var(--accent);font-weight:600}
+.bm.b{background:var(--surface);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}.bm.u{background:#1a1a1a;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.bq{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start}.bq button,.bm .mail{border:1.5px solid #1a1a1a;background:#fff4c2;color:#1a1a1a;border-radius:999px;padding:6px 12px;font:500 13px system-ui,sans-serif;cursor:pointer;text-decoration:none;display:inline-block}.bm .mail{background:#fcd34d;margin-top:8px;color:#1a1a1a}
+#bbf{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:var(--surface)}
+#bbi{flex:1;padding:10px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:15px system-ui,sans-serif;min-width:0}
+#bbf button{background:#1a1a1a;color:#fcd34d;border:0;border-radius:999px;padding:0 18px;font:500 14px system-ui,sans-serif;cursor:pointer}
+
+#bbt{width:auto;height:auto;border-radius:999px;padding:10px 20px 10px 12px;display:flex;align-items:center;gap:10px;font:600 15px Poppins,system-ui,sans-serif;color:#1a1a1a;animation:bbp 2.6s ease-in-out infinite}
+#bbt .bi{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:22px;border:2px solid #1a1a1a}
+@keyframes bbp{0%,100%{box-shadow:0 10px 26px rgba(26,26,26,.3),0 0 0 0 rgba(252,211,77,.7)}50%{box-shadow:0 10px 26px rgba(26,26,26,.3),0 0 0 12px rgba(252,211,77,0)}}
+@media(prefers-reduced-motion:reduce){#bbt{animation:none}}
+#bbp{bottom:68px}#bbi{font-size:16px}
+</style>
+<div id="bb"><div id="bbp" role="dialog" aria-label="InfiBee assistant"><div id="bbh"><div>InfiBee Assistant 🐝<small>Answers from our website</small></div><button id="bbx" type="button" aria-label="Close chat">×</button></div><div id="bbm" aria-live="polite"></div><div id="bbf" role="group" aria-label="Send a message"><input id="bbi" type="text" placeholder="Ask a question…" autocomplete="off" aria-label="Your question"><button type="button" id="bbs">Send</button></div></div><button id="bbt" type="button" aria-label="Ask InfiBee Assistant"><span class="bi">🐝</span><span id="bbl">Ask InfiBee Assistant</span></button></div>
+<script>
+(function(){
+var MAIL="infibeecoders@gmail.com",box=document.getElementById("bb"),M=document.getElementById("bbm"),inp=document.getElementById("bbi");
+var QS=["Book a free demo","What courses do you offer?","Where should my child start?","Fees and schedule"];
+var KB=[
+{k:["hello","hi ","hey","good morning","good evening"],a:"Hello! 👋 I can answer questions about our courses, ages, free demo class and free resources."},
+{k:["demo","trial","free class","try"],a:"We offer a <b>free demo class</b> on Google Meet. Pick a time on our booking calendar and the link arrives by email. We encourage both the student and a parent to attend. <br><a href='#book' data-go>Book a free demo ↗</a>"},
+{k:["fee","price","cost","charge","how much","schedule","timing","batch","slot","discount","duration","how long","how many classes","certificate"],a:"Current schedules and fees are shared when you enquire. Tap <b>Enquire</b> on any course, or email us and we’ll send the details. New batches start every week."},
+{k:["live","online","1:1","one on one","one-to-one","group","teacher","tutor","instructor","recorded"],a:"Every class is <b>live online</b> with a real teacher, in <b>1:1 sessions</b> so your child gets full attention. Students build a project in every session."},
+{k:["install","software","laptop","computer","device","tablet","phone","need to buy","requirement"],a:"Nothing to install for <b>Scratch, Code.org and Thunkable</b>, as they run in the browser. For <b>Python and web development</b> we help you set up free tools in the first class."},
+{k:["beginner","never coded","no experience","start","first course","where should","which course","recommend","suggest"],a:"Ages 6–9 usually begin with <b>Scratch</b> or <b>Code.org</b>. Ages 10 and up can jump into <b>Thunkable</b> or <b>Python</b>. Not sure? Book a free demo and we’ll recommend one. Tell me your child’s age and I can suggest courses."},
+{k:["enrol","enroll","book","join","register","sign up","admission","how do we"],a:"Choose a course, tap <b>Enquire</b> and we’ll share the schedule, fees and booking link. You can also <a href='#book' data-go>book a free demo ↗</a> first."},
+{k:["age","old","years","grade","class "],a:"Our courses cover <b>ages 6–18</b>. Tell me your child’s age (for example, “my son is 9”) and I’ll suggest suitable courses."},
+{k:["free","resource","cheat","sheet","quiz","pdf","worksheet","download"],a:"We offer free <b>cheat sheets and practice quizzes</b> for each platform. Pick a topic, enter your email and the PDF downloads instantly. <br><a href='#resources' data-go>Open free resources ↗</a>"},
+{k:["course","courses","offer","teach","subjects","languages","what do you"],a:"We have <b>13 courses</b>: Scratch, Code.org, Thunkable app building, Python, Data Analysis, Machine Learning, AI Agents, Databases &amp; SQL, Edublocks, Desktop Apps (Tkinter), C, C++ and Web Development. <br><a href='#courses' data-go>See all courses ↗</a>"},
+{k:["build","make","project","create","game","app","website","bot"],a:"Every class ends with something to show off: <b>games, mobile apps, websites and AI bots</b>. Learning is project-based."},
+{k:["about","who are you","infibee","stem","method","approach"],a:"InfiBee Coders runs playful, structured live coding classes for ages 6–18. Our STEM approach mixes science, technology, engineering and maths to build creativity, problem-solving and critical thinking."},
+{k:["contact","email","phone","whatsapp","call","reach","address","location"],a:"You can email us at <a href='mailto:"+MAIL+"'>"+MAIL+"</a>, or <a href='#book' data-go>book a demo ↗</a>."}
+];
+function add(c,h,t){var d=document.createElement("div");d.className="bm "+c;if(t)d.textContent=h;else d.innerHTML=h;M.appendChild(d);M.scrollTop=M.scrollHeight;return d}
+function chips(a){var q=document.createElement("div");q.className="bq";a.forEach(function(t){var b=document.createElement("button");b.type="button";b.textContent=t;b.onclick=function(){ask(t)};q.appendChild(b)});M.appendChild(q);M.scrollTop=M.scrollHeight}
+function range(x){var n=x.a.match(/\d+/g);return[+n[0],+n[1]]}
+function fallback(q){var u="mailto:"+MAIL+"?subject="+encodeURIComponent("Question from website")+"&body="+encodeURIComponent("Hello InfiBee Coders,\n\nMy question: "+q+"\n\nParent name:\nChild age:\n\nThank you.");
+add("b","I’m not sure about that one. Please email our team at <a href='mailto:"+MAIL+"'>"+MAIL+"</a> and we’ll get back to you. <br><a class='mail' href='"+u+"'>Email my question ✉</a>")}
+function answer(q){var s=" "+q.toLowerCase()+" ";
+var ct=C.slice().sort(function(a,b){return b.t.length-a.t.length}).filter(function(x){var t=x.t.toLowerCase();if(t=="c")return /\bc (programming|language)\b/.test(s);if(t=="c++")return s.indexOf("c++")>-1||s.indexOf("cpp")>-1;return s.indexOf(t)>-1||s.indexOf(x.n.toLowerCase())>-1})[0];
+if(ct){add("b","<b>"+ct.n+"</b><br>"+ct.d+"<br><small>"+ct.a+" · "+ct.l+" · 1:1 live online</small><br><a href='#courses' data-go>See courses ↗</a>");return}
+var m=s.match(/(\d{1,2})\s*(?:-|\s)?\s*(?:year|yr|yo|y\/o)/)||s.match(/\b(?:age|aged|is|am|turns?)\s+(\d{1,2})\b/)||s.match(/\bgrade\s+(\d{1,2})\b/);
+if(m&&/\b(son|daughter|child|kid|he|she|my|age|aged|year|yr|grade)\b/.test(s)){var a=+m[1];if(/grade/.test(m[0]))a+=5;
+if(a>=6&&a<=18){var r=C.filter(function(x){var g=range(x);return a>=g[0]&&a<=g[1]}).map(function(x){return x.n}).slice(0,6);add("b","For age <b>"+a+"</b>, good options are: <b>"+r.join(", ")+"</b>. A free demo class will help us pick the best start. <br><a href='#book' data-go>Book a free demo ↗</a>");return}
+add("b","Our courses are designed for ages <b>6–18</b>. Please email us at <a href='mailto:"+MAIL+"'>"+MAIL+"</a> and we’ll suggest the best option.");return}
+var best=null,sc=0;KB.forEach(function(e){var n=0;e.k.forEach(function(k){if(s.indexOf(k)>-1)n+=k.length>3?2:1});if(n>sc){sc=n;best=e}});
+if(best&&sc>=2)add("b",best.a);else fallback(q)}
+function ask(q){q=q.trim();if(!q)return;add("u",q,1);setTimeout(function(){answer(q)},350)}
+function send(){var v=inp.value;if(!v.trim())return;inp.value="";ask(v)}document.getElementById("bbs").onclick=send;inp.addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.isComposing){e.preventDefault();send()}});
+document.getElementById("bbt").onclick=function(){box.classList.toggle("open");if(box.classList.contains("open")&&!M.children.length){add("b","Hi! I’m the InfiBee assistant 🐝 Ask me about courses, ages, demo classes or free resources. For anything else I’ll point you to our team.");chips(QS)}var o=box.classList.contains("open");document.getElementById("bbl").textContent=o?"Close chat":"Ask InfiBee Assistant";if(o)inp.focus()};
+document.getElementById("bbx").onclick=function(){box.classList.remove("open");document.getElementById("bbl").textContent="Ask InfiBee Assistant"};
+M.addEventListener("click",function(e){if(e.target.hasAttribute&&e.target.hasAttribute("data-go"))box.classList.remove("open")});
 })();
 </script>
 </body>
