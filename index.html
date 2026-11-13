@@ -259,6 +259,7 @@ header .wrap{padding-top:6px;padding-bottom:6px}
 <input id="gemail" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
 <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label class="ok"><input type="checkbox" id="gok" required> <span>No spam, unsubscribe any time.</span></label>
+<div id="gvhost"></div>
 <button class="btn" type="submit" id="gbtn">Download free ↓</button>
 <p id="gmsg" role="status"></p>
 </form>
@@ -323,7 +324,7 @@ var q=document.createElement("input");q.id="q";q.placeholder="Search courses ⌕
 function draw(){var s=q.value.toLowerCase(),n=0;grid.innerHTML="";
 C.forEach(function(x){if((cat!="All"&&x.t!=cat)||(s&&(x.n+x.d+x.t).toLowerCase().indexOf(s)<0))return;n++;
 var e=document.createElement("div");e.className="card";
-e.innerHTML='<div class="ban" style="--c:'+x.c+'"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">'+I[x.t]+'</svg><em class="tag">'+x.t+'</em><b class="wm">'+x.i+'</b></div><h3>'+x.n+'</h3><div class="meta"><span>'+x.a+'</span><span>'+x.l+'</span><span>1:1 live online</span></div><p>'+x.d+'</p><a target="_blank" rel="noopener" href="https://mail.google.com/mail/?view=cm&to=infibeecoders@gmail.com&su='+encodeURIComponent("Enquiry: "+x.n)+'&body='+encodeURIComponent("Hello InfiBee Coders,\n\nI would like to enquire about the 1:1 live class: "+x.n+".\n\nChild name:\nChild age:\nPreferred days and timings:\nParent name:\nPhone/WhatsApp number:\n\nPlease share the schedule, fees and details of a free demo class.\n\nThank you.")+'">Enquire ↗</a>';
+e.innerHTML='<div class="ban" style="--c:'+x.c+'"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">'+I[x.t]+'</svg><em class="tag">'+x.t+'</em><b class="wm">'+x.i+'</b></div><h3>'+x.n+'</h3><div class="meta"><span>'+x.a+'</span><span>'+x.l+'</span><span>1:1 live online</span></div><p>'+x.d+'</p><a href="#" class="enq-btn" data-i="'+C.indexOf(x)+'">Enquire ↗</a>';
 grid.appendChild(e)});
 document.getElementById("none").style.display=n?"none":"block"}
 draw();
@@ -331,28 +332,39 @@ draw();
 
 <script>
 /* ============ SETTINGS: edit these ============ */
-const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzwQFK8DUNv6WOYTJJkh3gyhx-jbEGwwfStFKTa5Y8HbV6WX0aBdNVxrwqn7Cp5x1EL/exec";   // Google Sheets: paste your Apps Script "Web app" URL (ends in /exec). Formspree/Web3Forms URLs also work
+const PDF_FOLDER    = "pdfs/";   // folder that holds all the cheat-sheet PDFs, next to this page. Use "" if you put the PDFs in the same folder as index.html
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwdt8bU86byZiwYAKCQHe8WWYem3g4yKEf8YpMPVvAsjZQ99RhMqFNluTy6NZ-4a83w/exec";   // your Apps Script link (ends ...4a83w/exec)
+// Old links, no longer used: ...u2f11Tk (old download script), ...Cp5x1EL (deleted)
+const VERIFY_EMAIL  = true;   // true = email a 6-digit code to confirm the address before saving/downloading (needs the updated Apps Script)
 const ACCESS_KEY    = "";   // only for Web3Forms (leave "" for Formspree / Apps Script)
-const RESOURCES = [         // put your PDFs in the same folder as this page (index.html)
- {id:"scratch-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Move & control sprites",desc:"4 key points",file:"scratch-cheatsheet.pdf"},
- {id:"scratch-variables-score-lives-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Variables, score & lives",desc:"4 key points",file:"scratch-variables-score-lives-cheatsheet.pdf"},
- {id:"scratch-loops-events-broadcasts-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Loops, events & broadcasts",desc:"4 key points",file:"scratch-loops-events-broadcasts-cheatsheet.pdf"},
- {id:"code-org-courses-by-age-parent-guide-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Courses by age (parent guide)",desc:"4 key points",file:"code-org-courses-by-age-parent-guide-cheatsheet.pdf"},
- {id:"code-org-core-concepts-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Core concepts",desc:"4 key points",file:"code-org-core-concepts-cheatsheet.pdf"},
- {id:"code-org-debugging-tips-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Debugging tips",desc:"4 key points",file:"code-org-debugging-tips-cheatsheet.pdf"},
- {id:"thunkable-screens-components-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Screens & components",desc:"4 key points",file:"thunkable-screens-components-cheatsheet.pdf"},
- {id:"thunkable-blocks-events-variables-logic-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Blocks: events, variables & logic",desc:"4 key points",file:"thunkable-blocks-events-variables-logic-cheatsheet.pdf"},
- {id:"thunkable-test-share-your-app-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Test & share your app",desc:"4 key points",file:"thunkable-test-share-your-app-cheatsheet.pdf"},
- {id:"python-cheatsheet-pdf",emoji:"🐍",title:"Python: Starter basics",desc:"4 key points",file:"python-cheatsheet.pdf"},
- {id:"python-loops-cheatsheet-pdf",emoji:"🐍",title:"Python: Loops in Python",desc:"4 key points",file:"Python-loops-cheatsheet.pdf"},
- {id:"random-module-in-python-cheatsheet-pdf",emoji:"🐍",title:"Python: Random module",desc:"4 key points",file:"random-module-in-python-cheatsheet.pdf"},
- {id:"python-lists-functions-common-errors-cheatsheet-pdf",emoji:"🐍",title:"Python: Lists, functions & common errors",desc:"4 key points",file:"python-lists-functions-common-errors-cheatsheet.pdf"},
- {id:"lists-in-html-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: Lists in HTML",desc:"4 key points",file:"lists-in-HTML-cheatsheet.pdf"},
- {id:"web-dev-css-essentials-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: CSS essentials",desc:"4 key points",file:"web-dev-css-essentials-cheatsheet.pdf"},
- {id:"web-dev-layout-javascript-starter-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: Layout & JavaScript starter",desc:"4 key points",file:"web-dev-layout-javascript-starter-cheatsheet.pdf"},
- {id:"databases-read-data-select-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Read data: SELECT",desc:"4 key points",file:"databases-read-data-select-cheatsheet.pdf"},
- {id:"databases-change-data-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Change data",desc:"4 key points",file:"databases-change-data-cheatsheet.pdf"},
- {id:"databases-counting-joining-tables-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Counting & joining tables",desc:"4 key points",file:"databases-counting-joining-tables-cheatsheet.pdf"}
+const RESOURCES = [         // the PDF files live in the folder named in PDF_FOLDER (see above)
+ {id:"scratch-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Move & control sprites",desc:"5 pages",file:"scratch-cheatsheet.pdf"},
+ {id:"scratch-variables-score-lives-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Variables, score & lives",desc:"5 pages",file:"scratch-variables-score-lives-cheatsheet.pdf"},
+ {id:"scratch-loops-events-broadcasts-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Loops, events & broadcasts",desc:"5 pages",file:"scratch-loops-events-broadcasts-cheatsheet.pdf"},
+ {id:"scratch-animation-costumes-sound-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Animation, costumes & sound",desc:"5 pages",file:"scratch-animation-costumes-sound-cheatsheet.pdf"},
+ {id:"scratch-make-a-catch-game-step-by-step-cheatsheet-pdf",emoji:"🐱",title:"Scratch: Make a catch game (step by step)",desc:"5 pages",file:"scratch-make-a-catch-game-step-by-step-cheatsheet.pdf"},
+ {id:"code-org-courses-by-age-parent-guide-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Courses by age (parent guide)",desc:"4 pages",file:"code-org-courses-by-age-parent-guide-cheatsheet.pdf"},
+ {id:"code-org-core-concepts-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Core concepts",desc:"5 pages",file:"code-org-core-concepts-cheatsheet.pdf"},
+ {id:"code-org-debugging-tips-cheatsheet-pdf",emoji:"🧩",title:"Code.org: Debugging tips",desc:"4 pages",file:"code-org-debugging-tips-cheatsheet.pdf"},
+ {id:"thunkable-screens-components-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Screens & components",desc:"4 pages",file:"thunkable-screens-components-cheatsheet.pdf"},
+ {id:"thunkable-blocks-events-variables-logic-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Blocks: events, variables & logic",desc:"4 pages",file:"thunkable-blocks-events-variables-logic-cheatsheet.pdf"},
+ {id:"thunkable-test-share-your-app-cheatsheet-pdf",emoji:"📱",title:"Thunkable: Test & share your app",desc:"4 pages",file:"thunkable-test-share-your-app-cheatsheet.pdf"},
+ {id:"python-cheatsheet-pdf",emoji:"🐍",title:"Python: Basics: print, input & variables",desc:"5 pages",file:"python-cheatsheet.pdf"},
+ {id:"python-if-else-cheatsheet-pdf",emoji:"🐍",title:"Python: If / elif / else",desc:"5 pages",file:"python-if-else-cheatsheet.pdf"},
+ {id:"python-loops-cheatsheet-pdf",emoji:"🐍",title:"Python: Loops (for & while)",desc:"5 pages",file:"python-loops-cheatsheet.pdf"},
+ {id:"python-strings-cheatsheet-pdf",emoji:"🐍",title:"Python: Strings",desc:"5 pages",file:"python-strings-cheatsheet.pdf"},
+ {id:"python-lists-dictionaries-cheatsheet-pdf",emoji:"🐍",title:"Python: Lists & dictionaries",desc:"6 pages",file:"python-lists-dictionaries-cheatsheet.pdf"},
+ {id:"python-functions-cheatsheet-pdf",emoji:"🐍",title:"Python: Functions",desc:"5 pages",file:"python-functions-cheatsheet.pdf"},
+ {id:"random-module-in-python-cheatsheet-pdf",emoji:"🐍",title:"Python: Random module",desc:"5 pages",file:"random-module-in-python-cheatsheet.pdf"},
+ {id:"python-turtle-cheatsheet-pdf",emoji:"🐍",title:"Python: Turtle graphics",desc:"5 pages",file:"python-turtle-cheatsheet.pdf"},
+ {id:"python-errors-debugging-cheatsheet-pdf",emoji:"🐍",title:"Python: Common errors & debugging",desc:"5 pages",file:"python-errors-debugging-cheatsheet.pdf"},
+ {id:"html-basics-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: HTML basics: tags, links, images & lists",desc:"5 pages",file:"html-basics-cheatsheet.pdf"},
+ {id:"web-dev-css-essentials-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: CSS essentials",desc:"5 pages",file:"web-dev-css-essentials-cheatsheet.pdf"},
+ {id:"web-dev-flexbox-layout-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: Flexbox & responsive layout",desc:"5 pages",file:"web-dev-flexbox-layout-cheatsheet.pdf"},
+ {id:"web-dev-javascript-basics-cheatsheet-pdf",emoji:"🌐",title:"Web Dev: JavaScript basics",desc:"5 pages",file:"web-dev-javascript-basics-cheatsheet.pdf"},
+ {id:"databases-read-data-select-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Read data: SELECT",desc:"5 pages",file:"databases-read-data-select-cheatsheet.pdf"},
+ {id:"databases-change-data-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Change data",desc:"5 pages",file:"databases-change-data-cheatsheet.pdf"},
+ {id:"databases-counting-joining-tables-cheatsheet-pdf",emoji:"🗄️",title:"Databases: Counting & joining tables",desc:"5 pages",file:"databases-counting-joining-tables-cheatsheet.pdf"}
 ];
 /* ============================================== */
 (function(){
@@ -371,12 +383,14 @@ const RESOURCES = [         // put your PDFs in the same folder as this page (in
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){say("Please enter a valid email address.",1);return}
   if(!document.getElementById("gok").checked){say("Please tick the consent box.",1);return}
   if(f.botcheck.value){return}
-  btn.disabled=true;say("Sending…");
+  btn.disabled=true;say("Checking your email…");
+  ibv.ask(email,document.getElementById("gvhost")).then(function(rr){say("Sending…");
   var fd=new FormData(f);
   fd.append("resource",sel.title);fd.append("subject","Resource download: "+sel.title);fd.append("source","InfiBee website");
   if(ACCESS_KEY)fd.append("access_key",ACCESS_KEY);
   var send;
-  if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: email was NOT saved (demo mode).");send=Promise.resolve()}
+  if(rr&&rr.token){fd.append("token",rr.token);send=ibv.save(fd)}
+  else if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: email was NOT saved (demo mode).");send=Promise.resolve()}
   else if(FORM_ENDPOINT.indexOf("script.google.com")>-1){
    /* Google Apps Script: simple form POST; response is opaque, so a resolved request means it was sent */
    send=fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(fd)});
@@ -386,52 +400,508 @@ const RESOURCES = [         // put your PDFs in the same folder as this page (in
   send.then(function(){
    f.style.display="none";var d=document.getElementById("done");d.style.display="block";
    document.getElementById("doneTxt").textContent=sel.title+" is downloading now.";
-   var a=document.getElementById("dlink");a.href=sel.file;a.click();
+   var a=document.getElementById("dlink");a.href=PDF_FOLDER+sel.file;a.click();
   }).catch(function(){say("Something went wrong. Please try again.",1);btn.disabled=false});
+  },function(err){say(ibv.msg(err),1);btn.disabled=false});
  });
 })();
 </script>
 
 <script>
 var H=[
-{p:"Scratch",e:"🐱",s:[
-{t:"Move & control sprites",pdf:"scratch-cheatsheet.pdf",k:["`move 10 steps` and `turn 15 degrees` change position and direction","The stage is x: -240 to 240, y: -180 to 180; `go to x: y:` jumps there","`when [arrow] key pressed` + `change x by 10` = keyboard controls","`if on edge, bounce` keeps a sprite on screen"]},
-{t:"Variables, score & lives",k:["Make a variable under Variables, e.g. `score`","`set score to 0` when the green flag is clicked","`change score by 1` when you catch or hit something","Use `if lives = 0` then `stop all` for Game Over"]},
-{t:"Loops, events & broadcasts",k:["`forever` repeats always, `repeat 10` repeats a set number of times","`if / else` makes decisions, `touching [sprite]?` checks collisions","`broadcast [message]` tells other sprites to act","`create clone of myself` makes many copies for games"]}],
-q:[["Which block repeats actions again and again with no end?",["repeat 10","forever","wait 1 seconds"],1,"`forever` loops until the project stops."],["Which block starts a project when you press the flag?",["when green flag clicked","broadcast","go to x: y:"],0,"It is the standard start event."],["You want to count points. What do you need?",["A costume","A variable","A backdrop"],1,"A variable like `score` stores a number."],["How do sprites send messages to each other?",["broadcast","forever","say"],0,"Broadcast + `when I receive` links sprites."],["What does `change score by 1` do?",["Adds 1 to the score","Resets the score","Hides the score"],0,"It increases the variable by 1."]]},
-{p:"Code.org",e:"🧩",s:[
-{t:"Courses by age (parent guide)",k:["CS Fundamentals: grades K-5, puzzles and drag-and-drop blocks","CS Discoveries: grades 6-10, apps, games and web","CS Principles: high school, programming and big ideas","Hour of Code: a free 1-hour start for any age"]},
-{t:"Core concepts",k:["Sequence: steps run in order, top to bottom","Loop: repeat steps instead of copying blocks","Event: code that runs when something happens (click, key)","Conditional: `if` this is true, do that"]},
-{t:"Debugging tips",k:["Run the program slowly and watch each step","Check the order of blocks first","Look for a missing loop or a wrong number","Break a big puzzle into small parts"]}],
-q:[["What does a loop do?",["Stops the program","Repeats steps","Changes colour"],1,"Loops repeat so you write less code."],["Clicking a button starts an action. This is an...",["event","error","image"],0,"Events react to user actions."],["What is a bug?",["A mistake in code","A new level","A sprite"],0,"Debugging means finding and fixing it."],["Steps running one after another is called...",["Sequence","Condition","Function"],0,"Order matters in a sequence."],["Why do programmers use functions?",["To reuse code","To slow the program","To delete bugs"],0,"A function packages steps so you can reuse them."]]},
-{p:"Thunkable",e:"📱",s:[
-{t:"Screens & components",k:["Every app has screens; Screen1 is the first one","Drag components like Button, Label, TextBox and Image","Set properties (text, colour, size) in the right panel","Use `Navigator` blocks to move between screens"]},
-{t:"Blocks: events, variables & logic",k:["`when Button1.Click do` runs code on a tap","Create a global variable with `initialize app variable`","`if / else` blocks decide what happens","Join text with `join` to build messages"]},
-{t:"Test & share your app",k:["Use the Thunkable Live app to test on your own phone","Edit in the browser and the phone updates instantly","Share a project link or publish when it is ready","Always test on a real device before sharing"]}],
-q:[["Which block runs code when a button is tapped?",["when Button1.Click","initialize variable","join"],0,"Click is the tap event."],["Where do you change a Button's colour?",["Properties panel","Blocks tab","Phone settings"],0,"Properties control how it looks."],["What do you use to test the app on your phone?",["Thunkable Live","Scratch","Excel"],0,"It mirrors your project live."],["What stores a score in an app?",["Variable","Screen","Label colour"],0,"Variables hold values."],["What is a screen in an app?",["One page the user sees","A type of variable","A phone setting"],0,"Apps are made of one or more screens."]]},
-{p:"Python",e:"🐍",s:[
-{t:"Starter basics",pdf:"python-cheatsheet.pdf",k:["`print(\"Hello\")` shows text; `input()` asks the user","Types: `int` 5, `float` 2.5, `str` \"hi\", `bool` True","`name = \"Mia\"` stores a value in a variable","Comments start with `#`; indentation matters"]},
-{t:"Loops in Python",pdf:"Python-loops-cheatsheet.pdf",k:["`if x > 5:` ... `elif` ... `else:` with indented blocks","`for i in range(5):` repeats 5 times (0 to 4)","`while condition:` repeats until it is False","`break` exits a loop, `continue` skips to the next turn"]},
-{t:"Random module",pdf:"random-module-in-python-cheatsheet.pdf",k:["`import random` first","`random.randint(1, 6)` is a dice roll","`random.choice(list)` picks one item","`random.shuffle(list)` mixes a list in place"]},
-{t:"Lists, functions & common errors",k:["`fruits = [\"apple\", \"kiwi\"]`, `fruits.append(\"fig\")`, `len(fruits)`","`def greet(name): return \"Hi \" + name`","SyntaxError: missing `:` or bracket; IndentationError: spacing wrong","NameError: variable not defined; TypeError: mixing types like `\"5\" + 2`"]}],
-q:[["What does `print(2 + 3)` show?",["5","23","2 + 3"],0,"Python adds the numbers first."],["Which loop runs exactly 4 times?",["for i in range(4):","while True:","if i == 4:"],0,"`range(4)` gives 4 values."],["How do you pick a random item from a list?",["random.choice()","random.add()","print.random()"],0,"`choice` returns one item."],["Which error means spacing is wrong?",["IndentationError","NameError","TypeError"],0,"Python uses indentation for blocks."],["Which function tells you how many items are in a list?",["len()","count()","size()"],0,"`len(list)` returns the number of items."]]},
-{p:"Web Dev",e:"🌐",s:[
-{t:"Lists in HTML",pdf:"lists-in-HTML-cheatsheet.pdf",k:["`<h1>` to `<h6>` headings, `<p>` paragraph","`<a href=\"url\">link</a>` and `<img src=\"pic.jpg\" alt=\"text\">`","Lists: `<ul>` bullets, `<ol>` numbers, each item in `<li>`","Every page: `<html>`, `<head>`, `<body>`"]},
-{t:"CSS essentials",k:["`p { color: blue; }` selector + property: value","Select by class `.card` or id `#top`","Box model: content, padding, border, margin","`font-size`, `background-color`, `border-radius` for style"]},
-{t:"Layout & JavaScript starter",k:["`display: flex;` lines items up in a row","`justify-content` and `align-items` position them","JS: `let score = 0;` and `console.log(score)`","`button.onclick = function(){ ... }` runs code on click"]}],
-q:[["Which tag makes the biggest heading?",["<h1>","<p>","<h6>"],0,"`h1` is the top heading."],["Which CSS property changes text colour?",["color","font-weight","margin"],0,"`color` sets text colour."],["Which tag makes a bullet list?",["<ul>","<ol>","<li>"],0,"`ul` = unordered list."],["What does `display: flex` do?",["Aligns items in a row","Adds a border","Makes text bold"],0,"Flexbox arranges children."],["Which tag creates a link?",["<a>","<link>","<href>"],0,"`<a href=...>` makes a link."]]},
-{p:"Databases",e:"🗄️",s:[
-{t:"Read data: SELECT",k:["`SELECT * FROM students;` gets every column","`SELECT name, age FROM students;` picks columns","`WHERE age > 12` filters rows","`ORDER BY age DESC` sorts; `LIMIT 5` limits"]},
-{t:"Change data",k:["`INSERT INTO students (name, age) VALUES ('Mia', 12);`","`UPDATE students SET age = 13 WHERE name = 'Mia';`","`DELETE FROM students WHERE id = 3;`","Always use `WHERE` or you change every row"]},
-{t:"Counting & joining tables",k:["`COUNT(*)`, `SUM()`, `AVG()`, `MAX()`, `MIN()`","`GROUP BY class` summarises each group","Primary key = unique id for each row","`JOIN` links tables using a shared key"]}],
-q:[["Which command reads data?",["SELECT","INSERT","DELETE"],0,"SELECT retrieves rows."],["Which clause filters rows?",["WHERE","ORDER BY","LIMIT"],0,"WHERE keeps matching rows."],["What happens if UPDATE has no WHERE?",["Every row changes","Nothing","One row changes"],0,"Always add a WHERE."],["Which function counts rows?",["COUNT(*)","SUM()","MAX()"],0,"COUNT returns the number of rows."],["What is a primary key?",["A unique id for each row","The first column name","A password"],0,"It uniquely identifies each row."]]}
+{
+"p": "Scratch",
+"e": "🐱",
+"s": [
+{
+"t": "Move & control sprites",
+"pdf": "scratch-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Variables, score & lives",
+"pdf": "scratch-variables-score-lives-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Loops, events & broadcasts",
+"pdf": "scratch-loops-events-broadcasts-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Animation, costumes & sound",
+"pdf": "scratch-animation-costumes-sound-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Make a catch game (step by step)",
+"pdf": "scratch-make-a-catch-game-step-by-step-cheatsheet.pdf",
+"pg": 5
+}
+],
+"q": [
+[
+"Which block repeats actions again and again with no end?",
+[
+"repeat 10",
+"forever",
+"wait 1 seconds"
+],
+1,
+"`forever` loops until the project stops."
+],
+[
+"Which block starts a project when you press the flag?",
+[
+"when green flag clicked",
+"broadcast",
+"go to x: y:"
+],
+0,
+"It is the standard start event."
+],
+[
+"You want to count points. What do you need?",
+[
+"A costume",
+"A variable",
+"A backdrop"
+],
+1,
+"A variable like `score` stores a number."
+],
+[
+"How do sprites send messages to each other?",
+[
+"broadcast",
+"forever",
+"say"
+],
+0,
+"Broadcast + `when I receive` links sprites."
+],
+[
+"What does `change score by 1` do?",
+[
+"Adds 1 to the score",
+"Resets the score",
+"Hides the score"
+],
+0,
+"It increases the variable by 1."
+]
+]
+},
+{
+"p": "Code.org",
+"e": "🧩",
+"s": [
+{
+"t": "Courses by age (parent guide)",
+"pdf": "code-org-courses-by-age-parent-guide-cheatsheet.pdf",
+"pg": 4
+},
+{
+"t": "Core concepts",
+"pdf": "code-org-core-concepts-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Debugging tips",
+"pdf": "code-org-debugging-tips-cheatsheet.pdf",
+"pg": 4
+}
+],
+"q": [
+[
+"What does a loop do?",
+[
+"Stops the program",
+"Repeats steps",
+"Changes colour"
+],
+1,
+"Loops repeat so you write less code."
+],
+[
+"Clicking a button starts an action. This is an...",
+[
+"event",
+"error",
+"image"
+],
+0,
+"Events react to user actions."
+],
+[
+"What is a bug?",
+[
+"A mistake in code",
+"A new level",
+"A sprite"
+],
+0,
+"Debugging means finding and fixing it."
+],
+[
+"Steps running one after another is called...",
+[
+"Sequence",
+"Condition",
+"Function"
+],
+0,
+"Order matters in a sequence."
+],
+[
+"Why do programmers use functions?",
+[
+"To reuse code",
+"To slow the program",
+"To delete bugs"
+],
+0,
+"A function packages steps so you can reuse them."
+]
+]
+},
+{
+"p": "Thunkable",
+"e": "📱",
+"s": [
+{
+"t": "Screens & components",
+"pdf": "thunkable-screens-components-cheatsheet.pdf",
+"pg": 4
+},
+{
+"t": "Blocks: events, variables & logic",
+"pdf": "thunkable-blocks-events-variables-logic-cheatsheet.pdf",
+"pg": 4
+},
+{
+"t": "Test & share your app",
+"pdf": "thunkable-test-share-your-app-cheatsheet.pdf",
+"pg": 4
+}
+],
+"q": [
+[
+"Which block runs code when a button is tapped?",
+[
+"when Button1.Click",
+"initialize variable",
+"join"
+],
+0,
+"Click is the tap event."
+],
+[
+"Where do you change a Button's colour?",
+[
+"Properties panel",
+"Blocks tab",
+"Phone settings"
+],
+0,
+"Properties control how it looks."
+],
+[
+"What do you use to test the app on your phone?",
+[
+"Thunkable Live",
+"Scratch",
+"Excel"
+],
+0,
+"It mirrors your project live."
+],
+[
+"What stores a score in an app?",
+[
+"Variable",
+"Screen",
+"Label colour"
+],
+0,
+"Variables hold values."
+],
+[
+"What is a screen in an app?",
+[
+"One page the user sees",
+"A type of variable",
+"A phone setting"
+],
+0,
+"Apps are made of one or more screens."
+]
+]
+},
+{
+"p": "Python",
+"e": "🐍",
+"s": [
+{
+"t": "Basics: print, input & variables",
+"pdf": "python-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "If / elif / else",
+"pdf": "python-if-else-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Loops (for & while)",
+"pdf": "python-loops-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Strings",
+"pdf": "python-strings-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Lists & dictionaries",
+"pdf": "python-lists-dictionaries-cheatsheet.pdf",
+"pg": 6
+},
+{
+"t": "Functions",
+"pdf": "python-functions-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Random module",
+"pdf": "random-module-in-python-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Turtle graphics",
+"pdf": "python-turtle-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Common errors & debugging",
+"pdf": "python-errors-debugging-cheatsheet.pdf",
+"pg": 5
+}
+],
+"q": [
+[
+"What does `print(2 + 3)` show?",
+[
+"5",
+"23",
+"2 + 3"
+],
+0,
+"Python adds the numbers first."
+],
+[
+"Which loop runs exactly 4 times?",
+[
+"for i in range(4):",
+"while True:",
+"if i == 4:"
+],
+0,
+"`range(4)` gives 4 values."
+],
+[
+"How do you pick a random item from a list?",
+[
+"random.choice()",
+"random.add()",
+"print.random()"
+],
+0,
+"`choice` returns one item."
+],
+[
+"Which error means spacing is wrong?",
+[
+"IndentationError",
+"NameError",
+"TypeError"
+],
+0,
+"Python uses indentation for blocks."
+],
+[
+"Which function tells you how many items are in a list?",
+[
+"len()",
+"count()",
+"size()"
+],
+0,
+"`len(list)` returns the number of items."
+]
+]
+},
+{
+"p": "Web Dev",
+"e": "🌐",
+"s": [
+{
+"t": "HTML basics: tags, links, images & lists",
+"pdf": "html-basics-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "CSS essentials",
+"pdf": "web-dev-css-essentials-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Flexbox & responsive layout",
+"pdf": "web-dev-flexbox-layout-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "JavaScript basics",
+"pdf": "web-dev-javascript-basics-cheatsheet.pdf",
+"pg": 5
+}
+],
+"q": [
+[
+"Which tag makes the biggest heading?",
+[
+"<h1>",
+"<p>",
+"<h6>"
+],
+0,
+"`h1` is the top heading."
+],
+[
+"Which CSS property changes text colour?",
+[
+"color",
+"font-weight",
+"margin"
+],
+0,
+"`color` sets text colour."
+],
+[
+"Which tag makes a bullet list?",
+[
+"<ul>",
+"<ol>",
+"<li>"
+],
+0,
+"`ul` = unordered list."
+],
+[
+"What does `display: flex` do?",
+[
+"Aligns items in a row",
+"Adds a border",
+"Makes text bold"
+],
+0,
+"Flexbox arranges children."
+],
+[
+"Which tag creates a link?",
+[
+"<a>",
+"<link>",
+"<href>"
+],
+0,
+"`<a href=...>` makes a link."
+]
+]
+},
+{
+"p": "Databases",
+"e": "🗄️",
+"s": [
+{
+"t": "Read data: SELECT",
+"pdf": "databases-read-data-select-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Change data",
+"pdf": "databases-change-data-cheatsheet.pdf",
+"pg": 5
+},
+{
+"t": "Counting & joining tables",
+"pdf": "databases-counting-joining-tables-cheatsheet.pdf",
+"pg": 5
+}
+],
+"q": [
+[
+"Which command reads data?",
+[
+"SELECT",
+"INSERT",
+"DELETE"
+],
+0,
+"SELECT retrieves rows."
+],
+[
+"Which clause filters rows?",
+[
+"WHERE",
+"ORDER BY",
+"LIMIT"
+],
+0,
+"WHERE keeps matching rows."
+],
+[
+"What happens if UPDATE has no WHERE?",
+[
+"Every row changes",
+"Nothing",
+"One row changes"
+],
+0,
+"Always add a WHERE."
+],
+[
+"Which function counts rows?",
+[
+"COUNT(*)",
+"SUM()",
+"MAX()"
+],
+0,
+"COUNT returns the number of rows."
+],
+[
+"What is a primary key?",
+[
+"A unique id for each row",
+"The first column name",
+"A password"
+],
+0,
+"It uniquely identifies each row."
+]
+]
+}
 ];
-window.pickRes=function(file){var i=RESOURCES.map(function(r){return r.file}).indexOf(file),g=document.getElementById("resGrid");if(i>-1){g.children[i].click();document.getElementById("gsel").textContent="Selected: "+RESOURCES[i].title+" (enter your email below to download)"}document.getElementById("gate").scrollIntoView({behavior:"smooth",block:"center"})};
+window.pickRes=function(file){var i=RESOURCES.map(function(r){return r.file}).indexOf(file),g=document.getElementById("resGrid");
+/* start every pick with a fresh form (it is hidden after a successful download) */
+document.getElementById("gform").style.display="";document.getElementById("done").style.display="none";document.getElementById("gbtn").disabled=false;var gm=document.getElementById("gmsg");gm.textContent="";gm.className="";document.getElementById("gvhost").innerHTML="";
+if(i>-1){g.children[i].click();document.getElementById("gsel").textContent="Selected: "+RESOURCES[i].title+" (enter your email below to download)"}document.getElementById("gate").scrollIntoView({behavior:"smooth",block:"center"})};
 function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/`([^`]+)`/g,"<code>$1</code>")}
 (function(){var pf=document.getElementById("pf"),sh=document.getElementById("sheets");
 H.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=h.e+" "+h.p;b.onclick=function(){show(i)};pf.appendChild(b)});
 function show(i){[].forEach.call(pf.children,function(c,j){c.classList.toggle("on",j==i)});
-sh.innerHTML='<div class="tg">'+H[i].s.map(function(x){var fn=x.pdf||(H[i].p+"-"+x.t).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")+"-cheatsheet.pdf";return '<button type="button" class="tp" onclick="pickRes(\''+fn+'\')"><span class="e">'+H[i].e+'</span><b>'+esc(x.t)+'</b><small>'+x.k.length+' key points · PDF</small><span class="dl">Download ↓</span></button>'}).join('')+'<button type="button" class="tp qzc" onclick="openQuiz('+i+')"><span class="e">🧠</span><b>'+H[i].p+' Quiz</b><small>'+H[i].q.length+' questions · test yourself</small><span class="dl">Take the quiz →</span></button></div>'}
+sh.innerHTML='<div class="tg">'+H[i].s.map(function(x){var fn=x.pdf||(H[i].p+"-"+x.t).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")+"-cheatsheet.pdf";return '<button type="button" class="tp" onclick="pickRes(\''+fn+'\')"><span class="e">'+H[i].e+'</span><b>'+esc(x.t)+'</b><small>'+x.pg+' pages · PDF</small><span class="dl">Download ↓</span></button>'}).join('')+'<button type="button" class="tp qzc" onclick="openQuiz('+i+')"><span class="e">🧠</span><b>'+H[i].p+' Quiz</b><small>'+H[i].q.length+' questions · test yourself</small><span class="dl">Take the quiz →</span></button></div>'}
 show(0)})();
 
 /* ---- Quizzes (separate section) ---- */
@@ -439,13 +909,13 @@ show(0)})();
 H.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=h.e+" "+h.p+" Quiz";b.onclick=function(){go(i)};pf.appendChild(b)});
 function go(i){P=i;Q=0;S=0;[].forEach.call(pf.children,function(c,j){c.classList.toggle("on",j==i)});gate()}
 window.openQuiz=function(i){go(i);document.getElementById("quiz").scrollIntoView({behavior:"smooth"})};
-function post(o){o.source="InfiBee website";if(typeof ACCESS_KEY!=="undefined"&&ACCESS_KEY)o.access_key=ACCESS_KEY;
+function post(o){var tk=window.ibv&&ibv.tokenFor(o.email);if(tk){o.token=tk;o.source="InfiBee website";return ibv.save(o)}o.source="InfiBee website";if(typeof ACCESS_KEY!=="undefined"&&ACCESS_KEY)o.access_key=ACCESS_KEY;
 if(typeof FORM_ENDPOINT==="undefined"||!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: quiz details were NOT saved.");return Promise.resolve()}
 if(FORM_ENDPOINT.indexOf("script.google.com")>-1)return fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(o)});
 var fd=new FormData();for(var k in o)fd.append(k,o[k]);return fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0})}
 function gate(){var h=H[P],n=h.q.length,t='<h3 class="qh">'+h.e+" "+h.p+' Quiz</h3><p class="qs">'+n+' questions · about 2 minutes</p>';
 if(U){box.innerHTML=t+'<p>Hi <b>'+esc(U.name)+'</b>! Ready when you are.</p><button class="btn" type="button" id="qgo">Start quiz →</button>';document.getElementById("qgo").onclick=start;return}
-box.innerHTML=t+'<div class="row"><div><label for="qn">Your name</label><input id="qn" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div><div><label for="qr">I am a</label><select id="qr"><option selected>Child</option><option>Parent</option></select></div></div><label for="qe">Email address</label><input id="qe" type="email" autocomplete="email" placeholder="you@example.com"><input class="hp" id="qhp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="qs">No spam, unsubscribe any time.</p><button class="btn" type="button" id="qgo">Start quiz →</button><p id="qmsg" role="status"></p>';
+box.innerHTML=t+'<div class="row"><div><label for="qn">Your name</label><input id="qn" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div><div><label for="qr">I am a</label><select id="qr"><option selected>Child</option><option>Parent</option></select></div></div><label for="qe">Email address</label><input id="qe" type="email" autocomplete="email" placeholder="you@example.com"><input class="hp" id="qhp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="qs">No spam, unsubscribe any time.</p><div id="qvhost"></div><button class="btn" type="button" id="qgo">Start quiz →</button><p id="qmsg" role="status"></p>';
 document.getElementById("qgo").onclick=start}
 function say(t,e){var m=document.getElementById("qmsg");if(m){m.textContent=t;m.className=e?"err":""}}
 function start(){var h=H[P];
@@ -453,8 +923,9 @@ if(!U){var n=document.getElementById("qn").value.trim(),e=document.getElementByI
 if(!n){say("Please enter your name.",1);return}
 if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){say("Please enter a valid email address.",1);return}
 if(document.getElementById("qhp").value)return;
-var bt=document.getElementById("qgo");bt.disabled=true;say("Starting…");
-post({name:n,email:e,role:r,resource:"Quiz: "+h.p+" Quiz",subject:"Quiz started: "+h.p+" Quiz"}).then(function(){U={name:n,email:e,role:r};Q=0;S=0;ques()}).catch(function(){say("Something went wrong. Please try again.",1);bt.disabled=false});return}
+var bt=document.getElementById("qgo");bt.disabled=true;say("Checking your email…");
+ibv.ask(e,document.getElementById("qvhost")).then(function(rr){say("Starting…");
+post({name:n,email:e,role:r,resource:"Quiz: "+h.p+" Quiz",subject:"Quiz started: "+h.p+" Quiz"}).then(begin,function(){console.warn("Quiz details could not be saved online.");begin()})},function(err){say(ibv.msg(err),1);bt.disabled=false});function begin(){U={name:n,email:e,role:r};Q=0;S=0;ques()}return}
 Q=0;S=0;ques()}
 function ques(){var h=H[P],n=h.q.length;
 if(Q>=n){box.innerHTML='<h3 class="qh">'+(S==n?"🎉 Perfect score, ":S>=n-2?"👏 Well done, ":"🐝 Good try, ")+esc(U.name)+'!</h3><p class="score">'+S+' / '+n+'</p><p>'+(S==n?"You nailed the "+h.p+" quiz.":"Review the "+h.p+" cheat sheets and try again to beat your score.")+'</p><div class="cta"><button class="btn" type="button" id="qre">Retake quiz</button><a class="btn ghost" href="#resources" style="color:#1a1a1a;border-color:#1a1a1a">Get cheat sheets ↗</a></div><p class="qs">Try another quiz: pick a platform above.</p>';
@@ -510,11 +981,31 @@ var KB=[
 function add(c,h,t){var d=document.createElement("div");d.className="bm "+c;if(t)d.textContent=h;else d.innerHTML=h;M.appendChild(d);M.scrollTop=M.scrollHeight;return d}
 function chips(a){var q=document.createElement("div");q.className="bq";a.forEach(function(t){var b=document.createElement("button");b.type="button";b.textContent=t;b.onclick=function(){ask(t)};q.appendChild(b)});M.appendChild(q);M.scrollTop=M.scrollHeight}
 function range(x){var n=x.a.match(/\d+/g);return[+n[0],+n[1]]}
-function fallback(q){var u="mailto:"+MAIL+"?subject="+encodeURIComponent("Question from website")+"&body="+encodeURIComponent("Hello InfiBee Coders,\n\nMy question: "+q+"\n\nParent name:\nChild age:\n\nThank you.");
+function fallback(q){var u="mailto:"+MAIL+"?subject="+encodeURIComponent(CUR?"Question about "+CUR.n:"Question from website")+"&body="+encodeURIComponent("Hello InfiBee Coders,\n\nMy question: "+q+"\n\nParent name:\nChild age:\n\nThank you.");
 add("b","I’m not sure about that one. Please email our team at <a href='mailto:"+MAIL+"'>"+MAIL+"</a> and we’ll get back to you. <br><a class='mail' href='"+u+"'>Email my question ✉</a>")}
+var CUR=null;
+function hx(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function has(s,a){return a.some(function(k){return s.indexOf(k)>-1})}
+function mailFor(x,q){var u="mailto:"+MAIL+"?subject="+encodeURIComponent("Enquiry: "+x.n)+"&body="+encodeURIComponent("Hello InfiBee Coders,\n\nMy question about "+x.n+": "+q+"\n\nParent name:\nChild age:\n\nThank you.");return "<a class='mail' href='"+u+"'>Email about this course ✉</a>"}
+function ctx(q,s){var x=CUR,n="<b>"+x.n+"</b>";
+if(has(s,["fee","price","cost","charge","schedule","timing","batch","slot","duration","how long","how many","hours","certificate","refund","discount","payment","syllabus","curriculum","prerequisite","weekend","weekday"])){add("b","I don’t have exact details like that for "+n+" here. Please email our team at <a href='mailto:"+MAIL+"'>"+MAIL+"</a> and they’ll help. <br>"+mailFor(x,q));return 1}
+if(/\bage\b|\bold\b|grade|years|\bsuit/.test(s)){add("b",n+" is designed for <b>"+x.a.toLowerCase().replace("ages","ages")+"</b>. A free demo class helps us confirm the right fit. <br><a href='#book' data-go>Book a free demo ↗</a>");return 1}
+if(has(s,["level","beginner","experience","advanced","difficult","hard","easy","intermediate"])){add("b",n+" is at <b>"+x.l+"</b> level. A free demo class helps us confirm the right starting point. <br><a href='#book' data-go>Book a free demo ↗</a>");return 1}
+if(has(s,["learn","cover","topic","teach","build","make","create","about","what will","detail","include"])){add("b",n+": "+x.d+"<br>Classes are live and 1:1, and your child works on a project in every session.");return 1}
+if(has(s,["install","software","laptop","computer","tool","set up","setup","device","tablet"])){var b=["Scratch","Code.org","Thunkable"].indexOf(x.t)>-1,p=["Python","Web Dev"].indexOf(x.t)>-1;
+if(b)add("b",n+" runs in the browser, so there is <b>nothing to install</b>.");else if(p)add("b","For "+n+", we help you set up free tools in the first class.");else add("b","I don’t have the exact setup details for "+n+" here. Please email us at <a href='mailto:"+MAIL+"'>"+MAIL+"</a>. <br>"+mailFor(x,q));return 1}
+return 0}
+window.ibBot={open:function(i,name,f){var x=C[i];CUR=x;box.classList.add("open");document.getElementById("bbl").textContent="Close chat";
+if(f&&f.failed){var u="mailto:"+MAIL+"?subject="+encodeURIComponent("Enquiry: "+x.n)+"&body="+encodeURIComponent("Hello InfiBee Coders,\n\nI would like to enquire about the 1:1 live class: "+x.n+".\n\nName: "+name+"\nEmail: "+f.email+"\nI am a: "+f.role+"\nChild age:\nPreferred days and timings:\nPhone/WhatsApp number:\n\nPlease share the schedule, fees and free demo details.\n\nThank you.");
+add("b","Thanks, <b>"+hx(name)+"</b>! I couldn’t save your details online just now. Please email us at <a href='mailto:"+MAIL+"'>"+MAIL+"</a> so the team can reach you. <br><a class='mail' href='"+u+"'>Send my enquiry by email ✉</a>");add("b","In the meantime, here are the details for <b>"+x.n+"</b>:")}
+else add("b","Thanks, <b>"+hx(name)+"</b>! 🎉 We’ve received your enquiry for <b>"+x.n+"</b>. Here are the details:");
+add("b","<b>"+x.n+"</b><br>"+x.d+"<br><small>"+x.a+" · "+x.l+" · 1:1 live online</small><br>Every class is live with a real teacher, and your child builds a project to show off.");
+add("b",""+(f&&f.failed?"I don’t have the schedule and fees here, so please email us and the team will share them. ":"Our team will share the current schedule and fees. I don’t have those details here, but you can also email us at <a href='mailto:"+MAIL+"'>"+MAIL+"</a>. ")+"Ask me anything else about this course 👇");
+chips(["What will they learn?","Is this the right age?","Do we need to install anything?","Fees and schedule","Book a free demo"]);inp.focus()}};
 function answer(q){var s=" "+q.toLowerCase()+" ";
+if(CUR&&ctx(q,s))return;
 var ct=C.slice().sort(function(a,b){return b.t.length-a.t.length}).filter(function(x){var t=x.t.toLowerCase();if(t=="c")return /\bc (programming|language)\b/.test(s);if(t=="c++")return s.indexOf("c++")>-1||s.indexOf("cpp")>-1;return s.indexOf(t)>-1||s.indexOf(x.n.toLowerCase())>-1})[0];
-if(ct){add("b","<b>"+ct.n+"</b><br>"+ct.d+"<br><small>"+ct.a+" · "+ct.l+" · 1:1 live online</small><br><a href='#courses' data-go>See courses ↗</a>");return}
+if(ct){CUR=ct;add("b","<b>"+ct.n+"</b><br>"+ct.d+"<br><small>"+ct.a+" · "+ct.l+" · 1:1 live online</small><br><a href='#courses' data-go>See courses ↗</a>");return}
 var m=s.match(/(\d{1,2})\s*(?:-|\s)?\s*(?:year|yr|yo|y\/o)/)||s.match(/\b(?:age|aged|is|am|turns?)\s+(\d{1,2})\b/)||s.match(/\bgrade\s+(\d{1,2})\b/);
 if(m&&/\b(son|daughter|child|kid|he|she|my|age|aged|year|yr|grade)\b/.test(s)){var a=+m[1];if(/grade/.test(m[0]))a+=5;
 if(a>=6&&a<=18){var r=C.filter(function(x){var g=range(x);return a>=g[0]&&a<=g[1]}).map(function(x){return x.n}).slice(0,6);add("b","For age <b>"+a+"</b>, good options are: <b>"+r.join(", ")+"</b>. A free demo class will help us pick the best start. <br><a href='#book' data-go>Book a free demo ↗</a>");return}
@@ -527,6 +1018,124 @@ document.getElementById("bbt").onclick=function(){box.classList.toggle("open");i
 document.getElementById("bbx").onclick=function(){box.classList.remove("open");document.getElementById("bbl").textContent="Ask InfiBee Assistant"};
 M.addEventListener("click",function(e){if(e.target.hasAttribute&&e.target.hasAttribute("data-go"))box.classList.remove("open")});
 })();
+</script>
+<style>
+/* ---- Enquiry modal ---- */
+.enq{position:fixed;inset:0;z-index:300;background:rgba(26,26,26,.55);display:none;align-items:flex-start;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px 16px;overflow-y:auto;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.enq.on{display:flex}
+.enq .enq-box{position:relative;width:100%;max-width:500px;margin:auto;padding:30px}
+.enq h3{margin:8px 0 6px;font-size:22px;line-height:1.3}.enq .qs{color:var(--muted);font:14px/1.6 system-ui,sans-serif;margin:0 0 18px}
+#enqx{position:absolute;top:12px;right:14px;background:none;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink)}
+#emsg{margin:12px 0 0;font:600 14px system-ui,sans-serif}#emsg.err{color:#b42318}
+.enq .btn{cursor:pointer}.enq .btn[disabled]{opacity:.6;cursor:wait}
+</style>
+<div class="enq" id="enq"><div class="gate enq-box" role="dialog" aria-modal="true" aria-labelledby="enqt"><button type="button" id="enqx" aria-label="Close">×</button>
+<div class="eyebrow">Course enquiry</div><h3 id="enqt"></h3><p class="qs">Tell us who to contact. Our team will share the schedule, fees and free demo details.</p>
+<div class="row"><div><label for="en">Your name</label><input id="en" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div><div><label for="er">I am a</label><select id="er"><option>Parent</option><option>Student</option></select></div></div>
+<label for="ee">Email address</label><input id="ee" type="email" autocomplete="email" placeholder="you@example.com"><input class="hp" id="eh" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="ok"><input type="checkbox" id="eok"> <span>No spam, unsubscribe any time.</span></label>
+<div id="evhost"></div><button class="btn" type="button" id="ego">Send enquiry →</button><p id="emsg" role="status"></p></div></div>
+<script>
+(function(){var ov=document.getElementById("enq"),cur=0,$=function(i){return document.getElementById(i)};
+function say(t,e){$("emsg").textContent=t;$("emsg").className=e?"err":""}
+function close(){ov.classList.remove("on");document.body.style.overflow=""}
+window.openEnq=function(i){cur=i;$("enqt").textContent="Enquire: "+C[i].n;say("");$("ego").disabled=false;ov.classList.add("on");document.body.style.overflow="hidden";setTimeout(function(){$("en").focus()},50)};
+document.getElementById("grid").addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a.enq-btn");if(a){ev.preventDefault();openEnq(+a.getAttribute("data-i"))}});
+$("enqx").onclick=close;ov.addEventListener("click",function(e){if(e.target===ov)close()});document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+function go(){var n=$("en").value.trim(),em=$("ee").value.trim(),c=C[cur];
+if(!n){say("Please enter your name.",1);return}
+if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){say("Please enter a valid email address.",1);return}
+if(!$("eok").checked){say("Please tick the consent box.",1);return}
+if($("eh").value)return;
+$("ego").disabled=true;say("Checking your email…");
+ibv.ask(em,$("evhost")).then(function(rr){say("Sending…");
+var fd=new FormData();fd.append("name",n);fd.append("role",$("er").value);fd.append("email",em);fd.append("resource","Enquiry: "+c.n);fd.append("subject","Course enquiry: "+c.n);fd.append("source","InfiBee website");
+if(ACCESS_KEY)fd.append("access_key",ACCESS_KEY);
+var send;
+if(rr&&rr.token){fd.append("token",rr.token);send=ibv.save(fd)}
+else if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: enquiry was NOT saved (demo mode).");send=Promise.resolve()}
+else if(FORM_ENDPOINT.indexOf("script.google.com")>-1){send=fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(fd)})}
+else{send=fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0})}
+var info={email:em,role:$("er").value};
+function done(ok){close();$("en").value="";$("ee").value="";$("eok").checked=false;info.failed=!ok;if(window.ibBot)window.ibBot.open(cur,n,info)}
+send.then(function(){done(1)}).catch(function(){
+ console.warn("Enquiry could not be saved online; showing the email fallback.");done(0)})},function(err){say(ibv.msg(err),1);$("ego").disabled=false})}
+$("ego").onclick=go;[$("en"),$("ee")].forEach(function(x){x.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();go()}})});
+})();
+</script>
+<style>
+/* ---- Email verification box ---- */
+.vbox{background:var(--bg);border:1.5px dashed #1a1a1a;border-radius:14px;padding:16px;margin:4px 0 16px}
+.vbox p{margin:0 0 10px;font:14px/1.55 system-ui,sans-serif}
+.vcode{display:block;width:100%;text-align:center;letter-spacing:.45em;font:700 26px ui-monospace,Menlo,Consolas,monospace;padding:12px 8px 12px 16px;border-radius:12px;border:1.5px solid #1a1a1a;background:#fff;color:#1a1a1a;margin:0 0 12px}
+.vrow{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}.vrow .btn{padding:10px 22px;cursor:pointer}
+.vlink{background:none;border:0;padding:6px 0;color:var(--accent);font:600 13.5px system-ui,sans-serif;text-decoration:underline;cursor:pointer}.vlink[disabled]{color:var(--muted);text-decoration:none;cursor:default}
+.vbox .vmsg{margin:10px 0 0;font-weight:600}.vbox .vmsg.err{color:#b42318}
+</style>
+<script>
+window.ibv=(function(){
+var V={email:"",token:"",exp:0},MAIL="infibeecoders@gmail.com";
+var MSG={bad_email:"That email address doesn’t look right.",wait:"Please wait a few seconds before asking for another code.",too_many:"Too many codes were requested for this email. Please try again later, or email us at "+MAIL+".",quota:"We’ve reached today’s email limit. Please try again tomorrow, or email us at "+MAIL+".",mail:"We couldn’t send the code email. Please check the address and try again, or email us at "+MAIL+".",sheet:"We couldn’t save your details just now. Please email us at "+MAIL+".",expired:"That code has expired. Please request a new one.",locked:"Too many wrong tries. Please request a new code.",server:"Something went wrong on our side. Please try again.",net:"We couldn’t connect to save or verify this. Please check your internet connection and try again, or email us at "+MAIL+".",not_verified:"Your email needs to be verified again. Please try once more."};
+function hx(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function on(){return typeof VERIFY_EMAIL!=="undefined"&&VERIFY_EMAIL&&typeof FORM_ENDPOINT!=="undefined"&&FORM_ENDPOINT&&FORM_ENDPOINT.indexOf("script.google.com")>-1}
+function fetchJson(p){return fetch(FORM_ENDPOINT+"?"+new URLSearchParams(p)).then(function(r){return r.text()},function(){throw{code:"net"}}).then(function(t){try{var j=JSON.parse(t);return j&&typeof j==="object"&&"ok" in j?j:{legacy:1}}catch(x){return{legacy:1}}})}
+function jsonp(p){return new Promise(function(res,rej){var cb="ibcb"+Date.now()+Math.floor(Math.random()*1e6),sc=document.createElement("script"),done=0,t;
+function end(){clearTimeout(t);try{delete window[cb]}catch(x){window[cb]=undefined}if(sc.parentNode)sc.parentNode.removeChild(sc)}
+window[cb]=function(j){done=1;end();res(j&&typeof j==="object"&&"ok" in j?j:{legacy:1})};
+sc.onerror=function(){if(!done){end();rej({code:"net"})}};
+sc.onload=function(){setTimeout(function(){if(!done){end();res({legacy:1})}},60)};
+t=setTimeout(function(){if(!done){end();rej({code:"net"})}},12000);
+var q=Object.assign({},p);q.callback=cb;sc.src=FORM_ENDPOINT+"?"+new URLSearchParams(q);document.head.appendChild(sc)})}
+function reach(){return fetch(FORM_ENDPOINT+"?ping=1&t="+Date.now(),{mode:"no-cors"}).then(function(){return{legacy:1}},function(){throw{code:"net"}})}
+function call(p){p.t=Date.now();return fetchJson(p).catch(function(err){if(err&&err.code==="net")return jsonp(p);throw err}).catch(function(err){if(err&&err.code==="net")return reach();throw err})}
+function send(email){return call({action:"send_code",email:email}).then(function(r){if(r.legacy)return r;if(!r.ok)throw{code:r.error||"server"};return r})}
+function tokenFor(email){email=String(email||"").trim().toLowerCase();return V.token&&V.email===email&&Date.now()<V.exp?V.token:""}
+function msg(err){if(err&&err.code==="cancel")return"";return MSG[err&&err.code]||MSG.server}
+function ui(email,host){return new Promise(function(res,rej){
+host.innerHTML='<div class="vbox"><p>We emailed a 6-digit code to <b>'+hx(email)+'</b>. Enter it below. If you can’t see it, check your spam folder.</p><input class="vcode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="······" aria-label="6-digit code"><div class="vrow"><button type="button" class="btn vgo">Verify</button><button type="button" class="vlink vre">Resend code</button><button type="button" class="vlink vch">Change email</button></div><p class="vmsg" role="status"></p></div>';
+var box=host.firstChild,inp=box.querySelector(".vcode"),go=box.querySelector(".vgo"),re=box.querySelector(".vre"),ch=box.querySelector(".vch"),m=box.querySelector(".vmsg"),busy=0,tm;
+function say(t,e){m.textContent=t;m.className="vmsg"+(e?" err":"")}
+function cool(n){clearInterval(tm);var left=n;re.disabled=true;function paint(){if(!document.body.contains(re)){clearInterval(tm);return}if(left>0){re.textContent="Resend code ("+left+"s)"}else{re.textContent="Resend code";re.disabled=false;clearInterval(tm)}}paint();tm=setInterval(function(){left--;paint()},1000)}
+function verify(){var c=inp.value.replace(/\D/g,"");if(c.length!==6){say("Please enter the 6-digit code.",1);return}if(busy)return;busy=1;go.disabled=true;say("Checking…");
+call({action:"verify_code",email:email,code:c}).then(function(r){busy=0;go.disabled=false;
+if(r.ok&&r.token){V={email:email,token:r.token,exp:Date.now()+55*60*1000};clearInterval(tm);host.innerHTML="";res({token:r.token});return}
+if(r.error==="wrong"){say("That code isn’t right. "+(r.left>0?r.left+" tries left.":"Please request a new code."),1);inp.select();return}
+say(MSG[r.error]||MSG.server,1);if(r.error==="expired"||r.error==="locked")re.disabled=false},function(){busy=0;go.disabled=false;say(MSG.net,1)})}
+go.onclick=verify;inp.addEventListener("input",function(){inp.value=inp.value.replace(/\D/g,"");if(inp.value.length===6)verify()});
+inp.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();verify()}});
+re.onclick=function(){say("Sending a new code…");re.disabled=true;send(email).then(function(){say("A new code is on its way.");cool(30)},function(err){say(msg(err),1);cool(10)})};
+ch.onclick=function(){clearInterval(tm);host.innerHTML="";rej({code:"cancel"})};
+cool(30);inp.focus();if(host.scrollIntoView)host.scrollIntoView({block:"nearest",behavior:"smooth"})})}
+function ask(email,host){email=String(email||"").trim().toLowerCase();
+if(!on())return Promise.resolve({skip:1});
+var t=tokenFor(email);if(t)return Promise.resolve({token:t});
+return send(email).then(function(r){if(r.legacy){console.warn("Email verification skipped: the Google Apps Script has not been updated yet.");return{legacy:1}}return ui(email,host)})}
+function rid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,10)}
+function toObj(o){var r={};if(typeof FormData!=="undefined"&&o instanceof FormData)o.forEach(function(v,k){r[k]=v});else for(var k in o)r[k]=o[k];return r}
+function check(j){if(j&&j.ok===false){if(j.error==="not_verified")V.token="";throw{code:j.error||"server"}}}
+function save(o){var obj=toObj(o);obj.rid=rid();var p=new URLSearchParams(obj);
+return fetch(FORM_ENDPOINT,{method:"POST",body:p}).then(function(r){return r.text()},function(){throw{code:"net"}}).then(function(t){var j;try{j=JSON.parse(t)}catch(x){return}check(j)})
+.catch(function(err){if(err&&err.code==="net"){var q=Object.assign({action:"save"},obj);return jsonp(q).then(function(j){if(!j.legacy)check(j)})}throw err})}
+function dbg(){var old=document.getElementById("ibdbg");if(old)old.remove();
+var d=document.createElement("div");d.id="ibdbg";d.style.cssText="position:fixed;left:12px;bottom:12px;z-index:400;max-width:min(440px,calc(100vw - 24px));background:#fff;color:#1a1a1a;border:2px solid #1a1a1a;border-radius:14px;padding:14px 16px;font:14px/1.5 system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.35)";
+d.innerHTML='<div style="display:flex;justify-content:space-between;gap:10px"><b>Email verification check</b><button type="button" id="ibdx" style="border:0;background:none;font-size:20px;cursor:pointer">×</button></div><div style="font-size:12px;color:#666">Script link ends: …'+hx(String(FORM_ENDPOINT).slice(-14))+'</div><p id="ibdm" style="margin:8px 0">Checking…</p><div style="display:flex;gap:6px"><input id="ibde" type="email" placeholder="your email, to test" style="flex:1;min-width:0;padding:8px 10px;border:1.5px solid #1a1a1a;border-radius:8px;font:14px system-ui"><button type="button" id="ibdt" style="padding:8px 12px;border:0;border-radius:8px;background:#1a1a1a;color:#fcd34d;font:600 13px system-ui;cursor:pointer">Send test code</button></div><p id="ibdr" style="margin:8px 0 0"></p>';
+document.body.appendChild(d);var M=d.querySelector("#ibdm"),R=d.querySelector("#ibdr");
+d.querySelector("#ibdx").onclick=function(){d.remove()};
+if(!on()){M.textContent="❌ VERIFY_EMAIL is off, or FORM_ENDPOINT is not a script.google.com link.";return}
+call({action:"ping"}).then(function(j){
+if(j.legacy)M.innerHTML="❌ The link answers, but not in the way the new script does. Two possible reasons:<br>1) It still runs an older or different script (publish the new one: Deploy &gt; Manage deployments &gt; pencil &gt; New version, or use a fresh project).<br>2) &quot;Who has access&quot; is not set to <b>Anyone</b>. Test: open the link with <b>?action=ping</b> on the end in a <b>private/incognito window</b>. If you see a Google sign-in page, change access to Anyone and redeploy.";
+else if(j.mail!=="ok")M.textContent="⚠️ New script found, but it is not allowed to send email: "+j.mail;
+else if(j.sheet!=="ok")M.textContent="⚠️ New script found and email works, but the sheet has a problem: "+j.sheet;
+else M.textContent="✅ New script found. Email permission and the sheet both look fine. Send yourself a test code below."},
+function(){M.textContent="❌ This page cannot reach the script at all (offline, blocked, or wrong link). If you are viewing it in a preview, open the downloaded file in Chrome instead."});
+d.querySelector("#ibdt").onclick=function(){var em=d.querySelector("#ibde").value.trim();if(!em){R.textContent="Type your email first.";return}R.textContent="Sending…";
+call({action:"send_code",email:em.toLowerCase()}).then(function(j){
+if(j.legacy)R.textContent="❌ The script behind the link is not the new one, so no code can be sent.";
+else if(j.ok)R.textContent="✅ Sent. Check your inbox and your spam folder for a 6-digit code.";
+else R.textContent="❌ Could not send: "+(j.error||"unknown")+(j.detail?" ("+j.detail+")":"")+(j.error==="wait"?" Wait 30 seconds and try again.":"")},function(){R.textContent="❌ Could not reach the script."})}}
+if(/debug/.test(location.hash))dbg();
+window.addEventListener("hashchange",function(){if(/debug/.test(location.hash))dbg()});
+return{ask:ask,save:save,msg:msg,tokenFor:tokenFor,debug:dbg}})();
 </script>
 </body>
 </html>
