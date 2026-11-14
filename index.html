@@ -258,7 +258,7 @@ header .wrap{padding-top:6px;padding-bottom:6px}
 <label for="gemail">Email address</label>
 <input id="gemail" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
 <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
-<label class="ok"><input type="checkbox" id="gok" required> <span>No spam, unsubscribe any time.</span></label>
+<label class="ok"><input type="checkbox" id="gok" required checked> <span>No spam, unsubscribe any time.</span></label>
 <div id="gvhost"></div>
 <button class="btn" type="submit" id="gbtn">Download free ↓</button>
 <p id="gmsg" role="status"></p>
@@ -1026,40 +1026,45 @@ M.addEventListener("click",function(e){if(e.target.hasAttribute&&e.target.hasAtt
 .enq .enq-box{position:relative;width:100%;max-width:500px;margin:auto;padding:30px}
 .enq h3{margin:8px 0 6px;font-size:22px;line-height:1.3}.enq .qs{color:var(--muted);font:14px/1.6 system-ui,sans-serif;margin:0 0 18px}
 #enqx{position:absolute;top:12px;right:14px;background:none;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--ink)}
-#emsg{margin:12px 0 0;font:600 14px system-ui,sans-serif}#emsg.err{color:#b42318}
+#emsg{margin:0 0 12px;font:600 14px/1.5 system-ui,sans-serif}#emsg:empty{display:none}#emsg.err{color:#b42318}
 .enq .btn{cursor:pointer}.enq .btn[disabled]{opacity:.6;cursor:wait}
 </style>
 <div class="enq" id="enq"><div class="gate enq-box" role="dialog" aria-modal="true" aria-labelledby="enqt"><button type="button" id="enqx" aria-label="Close">×</button>
 <div class="eyebrow">Course enquiry</div><h3 id="enqt"></h3><p class="qs">Tell us who to contact. Our team will share the schedule, fees and free demo details.</p>
 <div class="row"><div><label for="en">Your name</label><input id="en" type="text" autocomplete="name" placeholder="Name" style="width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;margin-bottom:14px"></div><div><label for="er">I am a</label><select id="er"><option>Parent</option><option>Student</option></select></div></div>
 <label for="ee">Email address</label><input id="ee" type="email" autocomplete="email" placeholder="you@example.com"><input class="hp" id="eh" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-<label class="ok"><input type="checkbox" id="eok"> <span>No spam, unsubscribe any time.</span></label>
-<div id="evhost"></div><button class="btn" type="button" id="ego">Send enquiry →</button><p id="emsg" role="status"></p></div></div>
+<p class="qs" style="margin:4px 0 12px">🔒 No spam, unsubscribe any time.</p>
+<p id="emsg" role="status" aria-live="polite"></p><div id="evhost"></div><button class="btn" type="button" id="ego">Send enquiry →</button></div></div>
 <script>
 (function(){var ov=document.getElementById("enq"),cur=0,$=function(i){return document.getElementById(i)};
-function say(t,e){$("emsg").textContent=t;$("emsg").className=e?"err":""}
+function say(t,e){var m=$("emsg");m.textContent=t;m.className=e?"err":"";if(t&&m.scrollIntoView)m.scrollIntoView({block:"nearest",behavior:"smooth"})}
 function close(){ov.classList.remove("on");document.body.style.overflow=""}
-window.openEnq=function(i){cur=i;$("enqt").textContent="Enquire: "+C[i].n;say("");$("ego").disabled=false;ov.classList.add("on");document.body.style.overflow="hidden";setTimeout(function(){$("en").focus()},50)};
+window.openEnq=function(i){cur=i;$("enqt").textContent="Enquire: "+C[i].n;say("");busy(false);$("evhost").innerHTML="";ov.classList.add("on");document.body.style.overflow="hidden";setTimeout(function(){$("en").focus()},50)};
 document.getElementById("grid").addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("a.enq-btn");if(a){ev.preventDefault();openEnq(+a.getAttribute("data-i"))}});
 $("enqx").onclick=close;ov.addEventListener("click",function(e){if(e.target===ov)close()});document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
-function go(){var n=$("en").value.trim(),em=$("ee").value.trim(),c=C[cur];
-if(!n){say("Please enter your name.",1);return}
-if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){say("Please enter a valid email address.",1);return}
-if(!$("eok").checked){say("Please tick the consent box.",1);return}
-if($("eh").value)return;
-$("ego").disabled=true;say("Checking your email…");
-ibv.ask(em,$("evhost")).then(function(rr){say("Sending…");
-var fd=new FormData();fd.append("name",n);fd.append("role",$("er").value);fd.append("email",em);fd.append("resource","Enquiry: "+c.n);fd.append("subject","Course enquiry: "+c.n);fd.append("source","InfiBee website");
-if(ACCESS_KEY)fd.append("access_key",ACCESS_KEY);
-var send;
-if(rr&&rr.token){fd.append("token",rr.token);send=ibv.save(fd)}
-else if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: enquiry was NOT saved (demo mode).");send=Promise.resolve()}
-else if(FORM_ENDPOINT.indexOf("script.google.com")>-1){send=fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(fd)})}
-else{send=fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0})}
-var info={email:em,role:$("er").value};
-function done(ok){close();$("en").value="";$("ee").value="";$("eok").checked=false;info.failed=!ok;if(window.ibBot)window.ibBot.open(cur,n,info)}
-send.then(function(){done(1)}).catch(function(){
- console.warn("Enquiry could not be saved online; showing the email fallback.");done(0)})},function(err){say(ibv.msg(err),1);$("ego").disabled=false})}
+function busy(on,t){var b=$("ego");b.disabled=on;b.textContent=on?(t||"Sending…"):"Send enquiry →"}
+function go(){var n=$("en").value.trim(),em=$("ee").value.trim(),c=C[cur],role=$("er").value,MAIL="infibeecoders@gmail.com";
+if(!n){say("Please enter your name.",1);$("en").focus();return}
+if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){say("Please enter a valid email address.",1);$("ee").focus();return}
+if($("eh").value){say("Something went wrong. Please refresh the page and try again.",1);return}
+busy(true,"Checking your email…");say("");
+var pending=true,watch=setTimeout(function(){if(pending)say("Still working… this can take a few seconds. If nothing changes, email us at "+MAIL+".",1)},15000);
+var info={email:em,role:role};
+function done(ok){pending=false;clearTimeout(watch);busy(false);say("");close();$("en").value="";$("ee").value="";info.failed=!ok;if(window.ibBot)window.ibBot.open(cur,n,info)}
+ibv.ask(em,$("evhost")).then(function(rr){busy(true,"Sending…");
+var fd=new FormData();fd.append("name",n);fd.append("role",role);fd.append("email",em);fd.append("resource","Enquiry: "+c.n);fd.append("subject","Course enquiry: "+c.n);fd.append("source","InfiBee website");
+if(typeof ACCESS_KEY!=="undefined"&&ACCESS_KEY)fd.append("access_key",ACCESS_KEY);
+if(rr&&rr.token){fd.append("token",rr.token);return ibv.save(fd)}
+if(!FORM_ENDPOINT){console.warn("FORM_ENDPOINT not set: enquiry was NOT saved (demo mode).");return}
+if(FORM_ENDPOINT.indexOf("script.google.com")>-1)return fetch(FORM_ENDPOINT,{method:"POST",mode:"no-cors",body:new URLSearchParams(fd)});
+return fetch(FORM_ENDPOINT,{method:"POST",body:fd,headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw{code:"net"}})
+}).then(function(){done(1)}).catch(function(err){
+ pending=false;clearTimeout(watch);busy(false);
+ var code=err&&err.code;
+ if(code==="cancel"){say("");return}
+ if(code==="bad_email"||code==="wait"||code==="too_many"){say(ibv.msg(err),1);return}
+ console.warn("Enquiry could not be completed online ("+(code||err)+"); showing the email fallback.");
+ done(0)})}
 $("ego").onclick=go;[$("en"),$("ee")].forEach(function(x){x.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();go()}})});
 })();
 </script>
